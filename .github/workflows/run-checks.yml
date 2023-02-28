@@ -1,0 +1,30 @@
+name: run-checks
+
+on:
+  pull_request:
+  push:
+  schedule:
+   - cron: '0 0 * * *'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    services:
+      dynamodb-local:
+        image: amazon/dynamodb-local:latest
+        ports:
+          - 8000:8000
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      - name: lerna boostrap
+        run: npm run bootstrap
+      - name: run unit tests
+        run: npm run test
+      - name: run int tests
+        working-directory: ./packages/mapper
+        run: npm run integ

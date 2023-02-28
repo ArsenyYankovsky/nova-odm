@@ -55,7 +55,14 @@ Object.defineProperties(TestRecord.prototype, {
 
 describe('DataMapper', () => {
     let idx = 0;
-    const ddbClient = new DynamoDBClient({ endpoint: 'http://localhost:8000' });
+    const ddbClient = new DynamoDBClient({
+        endpoint: 'http://localhost:8000',
+        region: 'eu-west-1',
+        credentials: {
+            accessKeyId: "xxx",
+            secretAccessKey: "yyy",
+        }
+    });
     const mapper = new DataMapper({client: ddbClient});
     jest.setTimeout(60000);
 
