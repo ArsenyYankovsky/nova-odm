@@ -1,6 +1,6 @@
 {
   "name": "nova-odm",
-  "private": true,
+  "private": false,
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "docs": "typedoc src && lerna run docs",
