@@ -1,6 +1,8 @@
 # Nova ODM / Amazon DynamoDB DataMapper For JavaScript
 
 [![Apache 2 License](https://img.shields.io/github/license/ArsenyYankovsky/nova-odm.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
+![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/ArsenyYankovski/nova-odm/run-checks?branch=master)
+
 
 This project is a fork and a drop-in replacement of the original [dynamodb-data-mapper-js](https://github.com/awslabs/dynamodb-data-mapper-js).
 The goal of this project is to continue maintaining the project. 
