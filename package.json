@@ -28,5 +28,8 @@
   "jest": {
     "testEnvironment": "node",
     "testPathIgnorePatterns": ["/node_modules/", ".ts"]
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
