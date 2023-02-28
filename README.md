@@ -1,16 +1,34 @@
-# Amazon DynamoDB DataMapper For JavaScript
+# Nova ODM / Amazon DynamoDB DataMapper For JavaScript
 
-[![Apache 2 License](https://img.shields.io/github/license/awslabs/dynamodb-data-mapper-js.svg?style=flat)](http://aws.amazon.com/apache-2-0/)
+[![Apache 2 License](https://img.shields.io/github/license/ArsenyYankovsky/nova-odm.svg?style=flat)](https://www.apache.org/licenses/LICENSE-2.0)
+
+This project is a fork and a drop-in replacement of the original [dynamodb-data-mapper-js](https://github.com/awslabs/dynamodb-data-mapper-js).
+The goal of this project is to continue maintaining the project. 
+One major step on this way is already done: this project is migrated to use AWS SDK v3.
 
 This repository hosts several packages that collectively make up an object to
 document mapper for JavaScript applications using Amazon DynamoDB.
 
+## Migrating from the original [dynamodb-data-mapper-js](https://github.com/awslabs/dynamodb-data-mapper-js)
+
+This project provides drop-in replacement packages for the original packages. Replace your dependencies / imports with the following respective packages:
+
+| dynamodb-data-mapper-js               | Nova ODM                  |
+|---------------------------------------|---------------------------|
+| @aws/dynamodb-data-mapper             | @nova-odm/mapper          |
+| @aws/dynamodb-query-iterator          | @nova-odm/query-iterator  |
+| @aws/dynamodb-data-marshaller         | @nova-odm/marshaller      |
+| @aws/dynamodb-expressions             | @nova-odm/expressions     |
+| @aws/dynamodb-batch-iterator          | @nova-odm/batch-iterator  |
+| @aws/dynamodb-auto-marshaller         | @nova-odm/auto-marshaller |
+| @aws/dynamodb-data-mapper-annotations | @nova-odm/annotations     |
+
 ## Getting started
 
-[The `@aws/dynamodb-data-mapper` package](packages/dynamodb-data-mapper) provides
+[The `@nova-odm/mapper` package](packages/mapper) provides
 a simple way to persist and load an application's domain objects to and from
 Amazon DynamoDB. When used together with the decorators provided by [the
-`@aws/dynamodb-data-mapper-annotations` package](packages/dynamodb-data-mapper-annotations),
+`@nova-odm/annotations` package](packages/annotations),
 you can describe the relationship between a class and its representation in
 DynamoDB by adding a few decorators:
 
@@ -20,7 +38,7 @@ import {
     hashKey,
     rangeKey,
     table,
-} from '@aws/dynamodb-data-mapper-annotations';
+} from '@nova-odm/annotations';
 
 @table('table_name')
 class MyDomainObject {
@@ -39,11 +57,11 @@ With domain classes defined, you can interact with records in DynamoDB via an
 instance of `DataMapper`:
 
 ```typescript
-import {DataMapper} from '@aws/dynamodb-data-mapper';
-import DynamoDB = require('aws-sdk/clients/dynamodb');
+import {DataMapper} from '@nova-odm/mapper';
+import {DynamoDBClient} from '@aws-sdk/client-dynamodb';
 
 const mapper = new DataMapper({
-    client: new DynamoDB({region: 'us-west-2'}), // the SDK client used to execute operations
+    client: new DynamoDBClient({region: 'us-west-2'}), // the SDK client used to execute operations
     tableNamePrefix: 'dev_' // optionally, you can provide a table prefix to keep your dev and prod tables separate
 });
 ```
@@ -188,12 +206,12 @@ for await (const found of mapper.batchDelete(toRemove)) {
 
 ##### Aplication example
 
-```js
+```typescript
 import {
     AttributePath,
     FunctionExpression,
     UpdateExpression,
-} from '@aws/dynamodb-expressions';
+} from '@nova-odm/expressions';
 
 const expr = new UpdateExpression();
 
@@ -275,10 +293,10 @@ The DataMapper is developed as a monorepo using [`lerna`](https://github.com/ler
 More detailed documentation about the mapper's constituent packages is available
 by viewing those packages directly.
 
-* [Amazon DynamoDB Automarshaller](packages/dynamodb-auto-marshaller/)
-* [Amazon DynamoDB Batch Iterator](packages/dynamodb-batch-iterator/)
-* [Amazon DynamoDB DataMapper](packages/dynamodb-data-mapper/)
-* [Amazon DynamoDB DataMapper Annotations](packages/dynamodb-data-mapper-annotations/)
-* [Amazon DynamoDB Data Marshaller](packages/dynamodb-data-marshaller/)
-* [Amazon DynamoDB Expressions](packages/dynamodb-expressions/)
-* [Amazon DynamoDB Query Iterator](packages/dynamodb-query-iterator/)
+* [Nova ODM / Amazon DynamoDB Automarshaller](packages/auto-marshaller/)
+* [Nova ODM / Amazon DynamoDB Batch Iterator](packages/batch-iterator/)
+* [Nova ODM / Amazon DynamoDB DataMapper](packages/mapper/)
+* [Nova ODM / Amazon DynamoDB DataMapper Annotations](packages/annotations/)
+* [Nova ODM / Amazon DynamoDB Data Marshaller](packages/marshaller/)
+* [Nova ODM / Amazon DynamoDB Expressions](packages/expressions/)
+* [Nova ODM / Amazon DynamoDB Query Iterator](packages/query-iterator/)

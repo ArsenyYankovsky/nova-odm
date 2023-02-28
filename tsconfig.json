@@ -3,10 +3,12 @@
     "target": "es5",
     "lib": [
       "dom",
-      "es5"
+      "es5",
+      "esnext.asynciterable",
+      "esnext"
     ],
     "module": "commonjs",
-    "strict": true
+    "strict": true,
   },
   "typedocOptions": {
     "mode": "file",
