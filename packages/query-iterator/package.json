@@ -1,6 +1,6 @@
 {
   "name": "@nova-odm/query-iterator",
-  "version": "0.8.1",
+  "version": "0.8.2",
   "description": "Abstraction for DynamoDB queries and scans that handles pagination and parallel worker coordination",
   "keywords": [
     "aws",
