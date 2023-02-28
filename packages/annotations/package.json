@@ -45,5 +45,6 @@
     "reflect-metadata": "^0.1.10",
     "tslib": "^2.5.0",
     "uuid": "^3.0.0"
-  }
+  },
+  "gitHead": "3a3c38b0f6f1cccb1a19972a3d1400cf097d2fcb"
 }

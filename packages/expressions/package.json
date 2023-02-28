@@ -41,5 +41,6 @@
   "dependencies": {
     "@nova-odm/auto-marshaller": "^0.8.1",
     "tslib": "^2.5.0"
-  }
+  },
+  "gitHead": "3a3c38b0f6f1cccb1a19972a3d1400cf097d2fcb"
 }
