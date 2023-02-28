@@ -1,6 +1,10 @@
-name: CI
+name: run-checks
 
-on: [pull_request, push]
+on:
+  - pull_request
+  - push
+  - schedule:
+     - cron: '0 0 * * *'
 
 jobs:
   build:
