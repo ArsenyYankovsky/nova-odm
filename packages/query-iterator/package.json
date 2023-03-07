@@ -1,6 +1,6 @@
 {
   "name": "@nova-odm/query-iterator",
-  "version": "0.8.2",
+  "version": "0.8.3",
   "description": "Abstraction for DynamoDB queries and scans that handles pagination and parallel worker coordination",
   "keywords": [
     "aws",
@@ -28,7 +28,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@aws-sdk/client-dynamodb": "3.279.0",
+    "@aws-sdk/client-dynamodb": "^3.284.0",
     "@types/jest": "^29",
     "@types/node": "^8.0.4",
     "jest": "^29",
@@ -36,7 +36,7 @@
     "typescript": "^4.9.5"
   },
   "peerDependencies": {
-    "@aws-sdk/client-dynamodb": "3.279.0"
+    "@aws-sdk/client-dynamodb": "^3.284.0"
   },
   "dependencies": {
     "tslib": "2.5.0"
