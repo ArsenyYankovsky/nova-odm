@@ -1,7 +1,7 @@
 {
   "name": "@nova-odm/annotations",
   "version": "0.8.2",
-  "description": "Annotations providing easy integration between TypeScript domain objects and the @aws/dynamodb-data-mapper library",
+  "description": "Annotations providing easy integration between TypeScript domain objects and the @nova-odm/mapper library",
   "keywords": [
     "aws",
     "dynamodb",
@@ -30,7 +30,7 @@
   },
   "license": "Apache-2.0",
   "devDependencies": {
-    "@aws-sdk/client-dynamodb": "3.279.0",
+    "@aws-sdk/client-dynamodb": "^3.284.0",
     "@types/jest": "^29",
     "@types/node": "^8.0.4",
     "@types/uuid": "^3.0.0",
