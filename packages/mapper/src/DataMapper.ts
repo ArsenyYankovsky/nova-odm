@@ -976,13 +976,12 @@ export class DataMapper {
             if (isKey(fieldSchema)) {
                 itemKey[key] = inputMember;
             } else if (isVersionAttribute(fieldSchema)) {
-                const {condition: versionCond, value} = handleVersionAttribute(
-                    key,
-                    inputMember
-                );
-                expr.set(key, value);
-
                 if (!skipVersionCheck) {
+                    const {condition: versionCond, value} = handleVersionAttribute(
+                      key,
+                      inputMember
+                    );
+                    expr.set(key, value);
                     condition = condition
                         ? {type: 'And', conditions: [condition, versionCond]}
                         : versionCond;
