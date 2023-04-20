@@ -1,6 +1,6 @@
 {
   "name": "@nova-odm/marshaller",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "A schema-based data marshaller for Amazon DynamoDB",
   "keywords": [
     "aws",
@@ -36,8 +36,8 @@
     "typescript": "^4.9.5"
   },
   "dependencies": {
-    "@nova-odm/auto-marshaller": "^0.8.3",
-    "@nova-odm/expressions": "^0.8.3",
+    "@nova-odm/auto-marshaller": "^0.8.4",
+    "@nova-odm/expressions": "^0.8.4",
     "tslib": "2.5.0",
     "utf8-bytes": "^0.0.1"
   },
