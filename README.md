@@ -12,7 +12,10 @@ The goal of this project is to continue maintaining the project.
 One major step on this way is already done: this project is migrated to use AWS SDK v3.
 Read the migration guide [here](#migrating-from-the-original-dynamodb-data-mapper-js) for more details.
 
+## Table of Contents
+
 - [Nova ODM / Amazon DynamoDB DataMapper For JavaScript](#nova-odm---amazon-dynamodb-datamapper-for-javascript)
+    * [Table of Contents](#table-of-contents)
     * [Getting Started](#getting-started)
         + [Installation](#installation)
         + [Defining a Model](#defining-a-model)
@@ -29,11 +32,11 @@ Read the migration guide [here](#migrating-from-the-original-dynamodb-data-mappe
             * [`batchDelete`](#-batchdelete-)
         + [Operations with Expressions](#operations-with-expressions)
             - [Application example](#application-example)
-        + [Table lifecycle operations](#table-lifecycle-operations)
-            - [`createTable`](#-createtable-)
-            - [`ensureTableExists`](#-ensuretableexists-)
-            - [`deleteTable`](#-deletetable-)
-            - [`ensureTableNotExists`](#-ensuretablenotexists-)
+    * [Table lifecycle operations](#table-lifecycle-operations)
+        + [`createTable`](#-createtable-)
+        + [`ensureTableExists`](#-ensuretableexists-)
+        + [`deleteTable`](#-deletetable-)
+        + [`ensureTableNotExists`](#-ensuretablenotexists-)
     * [Advanced Usage](#advanced-usage)
         + [Optimistic Locking](#optimistic-locking)
     * [Using with esbuild](#using-with-esbuild)
@@ -297,9 +300,7 @@ import {
     UpdateExpression,
 } from '@nova-odm/expressions';
 
-const expr = new UpdateExpression();
-
-// given the anotation bellow
+// given the entity below
 @table('tableName')
 class MyRecord {
     public constructor(partial?: Partial<MyRecord>) {
@@ -336,9 +337,9 @@ const result = await mapper.put(aRecord, {
 })
 ``` 
 
-### Table lifecycle operations
+## Table lifecycle operations
 
-#### `createTable`
+### `createTable`
 
 Creates a table for the mapped class and waits for it to be initialized:
 
@@ -346,7 +347,7 @@ Creates a table for the mapped class and waits for it to be initialized:
 await mapper.createTable(MyDomainObject, {readCapacityUnits: 5, writeCapacityUnits: 5})
 ```
 
-#### `ensureTableExists`
+### `ensureTableExists`
 
 Like `createTable`, but only creates the table if it doesn't already exist:
 
@@ -354,7 +355,7 @@ Like `createTable`, but only creates the table if it doesn't already exist:
 await mapper.ensureTableExists(MyDomainObject, {readCapacityUnits: 5, writeCapacityUnits: 5})
 ```
 
-#### `deleteTable`
+### `deleteTable`
 
 Deletes the table for the mapped class and waits for it to be removed:
 
@@ -362,7 +363,7 @@ Deletes the table for the mapped class and waits for it to be removed:
 await mapper.deleteTable(MyDomainObject)
 ```
 
-#### `ensureTableNotExists`
+### `ensureTableNotExists`
 
 Like `deleteTable`, but only deletes the table if it exists:
 
