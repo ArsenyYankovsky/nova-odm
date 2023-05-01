@@ -2,130 +2,162 @@
 
 ![GitHub](https://img.shields.io/github/license/ArsenyYankovsky/nova-odm)
 ![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/ArsenyYankovsky/nova-odm/run-checks.yml?branch=master)
+![npm](https://img.shields.io/npm/dw/@nova-odm/mapper)
+![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@nova-odm/mapper)
+
+A schema-based object to document mapper for Amazon DynamoDB.
 
 This project is a fork and a drop-in replacement of the original [dynamodb-data-mapper-js](https://github.com/awslabs/dynamodb-data-mapper-js).
-The goal of this project is to continue maintaining the project. 
+The goal of this project is to continue maintaining the project.
 One major step on this way is already done: this project is migrated to use AWS SDK v3.
+Read the migration guide [here](#migrating-from-the-original-dynamodb-data-mapper-js) for more details.
 
-This repository hosts several packages that collectively make up an object to
-document mapper for JavaScript applications using Amazon DynamoDB.
+- [Nova ODM / Amazon DynamoDB DataMapper For JavaScript](#nova-odm---amazon-dynamodb-datamapper-for-javascript)
+    * [Getting Started](#getting-started)
+        + [Installation](#installation)
+        + [Defining a Model](#defining-a-model)
+    * [Simple Usage](#simple-usage)
+        + [`put`](#-put-)
+        + [`get`](#-get-)
+        + [`update`](#-update-)
+        + [`delete`](#-delete-)
+        + [`scan`](#-scan-)
+        + [`query`](#-query-)
+    * [Batch Operations](#batch-operations)
+        + [`batchPut`](#-batchput-)
+        + [`batchGet`](#-batchget-)
+            * [`batchDelete`](#-batchdelete-)
+        + [Operations with Expressions](#operations-with-expressions)
+            - [Application example](#application-example)
+        + [Table lifecycle operations](#table-lifecycle-operations)
+            - [`createTable`](#-createtable-)
+            - [`ensureTableExists`](#-ensuretableexists-)
+            - [`deleteTable`](#-deletetable-)
+            - [`ensureTableNotExists`](#-ensuretablenotexists-)
+    * [Advanced Usage](#advanced-usage)
+        + [Optimistic Locking](#optimistic-locking)
+    * [Using with esbuild](#using-with-esbuild)
+    * [Migrating from the original dynamodb-data-mapper-js](#migrating-from-the-original-dynamodb-data-mapper-js)
+    * [Constituent packages](#constituent-packages)
 
-## Migrating from the original [dynamodb-data-mapper-js](https://github.com/awslabs/dynamodb-data-mapper-js)
+## Getting Started
 
-This project provides drop-in replacement packages for the original packages. Replace your dependencies / imports with the following respective packages:
+### Installation
 
-| dynamodb-data-mapper-js               | Nova ODM                  |
-|---------------------------------------|---------------------------|
-| @aws/dynamodb-data-mapper             | @nova-odm/mapper          |
-| @aws/dynamodb-query-iterator          | @nova-odm/query-iterator  |
-| @aws/dynamodb-data-marshaller         | @nova-odm/marshaller      |
-| @aws/dynamodb-expressions             | @nova-odm/expressions     |
-| @aws/dynamodb-batch-iterator          | @nova-odm/batch-iterator  |
-| @aws/dynamodb-auto-marshaller         | @nova-odm/auto-marshaller |
-| @aws/dynamodb-data-mapper-annotations | @nova-odm/annotations     |
+```sh
+npm install @nova-odm/mapper @nova-odm/annotations reflect-metadata
+```
 
-## Getting started
+```sh
+yarn add @nova-odm/mapper @nova-odm/annotations reflect-metadata
+```
 
-[The `@nova-odm/mapper` package](packages/mapper) provides
-a simple way to persist and load an application's domain objects to and from
-Amazon DynamoDB. When used together with the decorators provided by [the
-`@nova-odm/annotations` package](packages/annotations),
-you can describe the relationship between a class and its representation in
-DynamoDB by adding a few decorators:
+Import `reflect-metadata` at the top level of your application:
+
+```typescript
+import 'reflect-metadata'
+```
+
+### Defining a Model
+
+Start by defining a model using decorators from the `@nova-odm/annotations` package.
 
 ```typescript
 import {
-    attribute,
-    hashKey,
-    rangeKey,
-    table,
+  attribute,
+  hashKey,
+  rangeKey,
+  table,
 } from '@nova-odm/annotations';
 
 @table('table_name')
 class MyDomainObject {
-    @hashKey()
-    id: string;
+  public constructor(partial?: Partial<MyDomainObject>) {
+    Object.assign(this, partial)
+  }
+  
+  @hashKey()
+  id: string;
 
-    @rangeKey({defaultProvider: () => new Date()})
-    createdAt: Date;
+  @rangeKey({defaultProvider: () => new Date()})
+  createdAt: Date;
 
-    @attribute()
-    completed?: boolean;
+  @attribute()
+  completed?: boolean;
 }
 ```
+
+We also highly recommend adding a partial constructor to your domain classes as shown above.
+
+## Simple Usage
 
 With domain classes defined, you can interact with records in DynamoDB via an
 instance of `DataMapper`:
 
 ```typescript
-import {DataMapper} from '@nova-odm/mapper';
-import {DynamoDBClient} from '@aws-sdk/client-dynamodb';
+import { DataMapper } from '@nova-odm/mapper';
+import { DynamoDBClient } from '@aws-sdk/client-dynamodb';
 
 const mapper = new DataMapper({
-    client: new DynamoDBClient({region: 'us-west-2'}), // the SDK client used to execute operations
+    client: new DynamoDBClient({ region: 'us-west-2' }), // the SDK client used to execute operations
     tableNamePrefix: 'dev_' // optionally, you can provide a table prefix to keep your dev and prod tables separate
 });
 ```
 
-### Supported operations
-
-Using the `mapper` object and `MyDomainObject` class defined above, you can
-perform the following operations:
-
-#### `put`
+### `put`
 
 Creates (or overwrites) an item in the table
 
 ```typescript
-const toSave = Object.assign(new MyDomainObject, {id: 'foo'});
-mapper.put(toSave).then(objectSaved => {
-    // the record has been saved
-});
+const savedObject = await mapper.put(new MyDomainObject({id: 'foo'}));
 ```
 
-#### `get`
+### `get`
 
 Retrieves an item from DynamoDB
 
 ```typescript
-mapper.get(Object.assign(new MyDomainObject, {id: 'foo', createdAt: new Date(946684800000)}))
-    .then(myItem => {
-        // the item was found
-    })
-    .catch(err => {
-        // the item was not found
-    })
+const item = await mapper.get(new MyDomainObject({ id: 'foo', createdAt: new Date(946684800000) }))
 ```
 
 **NB:** The promise returned by the mapper will be rejected with an
 `ItemNotFoundException` if the item sought is not found.
 
-#### `update`
+### `update`
 
 Updates an item in the table
 
 ```typescript
-const myItem = await mapper.get(Object.assign(
-    new MyDomainObject,
-    {id: 'foo', createdAt: new Date(946684800000)}
-));
-myItem.completed = true;
+const item = await mapper.get(new MyDomainObject({ id: 'foo', createdAt: new Date(946684800000) }));
 
-await mapper.update(myItem);
+item.completed = true;
+
+await mapper.update(item);
 ```
 
-#### `delete`
+Also supports partial updates:
+
+```typescript
+await this.mapper.update({
+  item: new MyDomainObject({
+    id,
+    completed: true,
+  }),
+  onMissing: 'skip',
+})
+```
+
+This will not update a the `createdAt` property of the item in this example.
+
+### `delete`
 
 Removes an item from the table
 
 ```typescript
-await mapper.delete(Object.assign(
-    new MyDomainObject,
-    {id: 'foo', createdAt: new Date(946684800000)}
-));
+await mapper.delete(new MyDomainObject({ id: 'foo', createdAt: new Date(946684800000) }));
 ```
 
-#### `scan`
+### `scan`
 
 Lists the items in a table or index
 
@@ -135,22 +167,70 @@ for await (const item of mapper.scan(MyDomainObject)) {
 }
 
 // Optionally, scan an index instead of the table:
-for await (const item of mapper.scan(MyDomainObject, {indexName: 'myIndex'})) {
+for await (const item of mapper.scan(MyDomainObject, { indexName: 'myIndex' })) {
     // individual items will be yielded as the scan is performed
 }
 ```
 
-#### `query`
+You can also use the `pages()` method to read items in pages and get the last evaluated key:
+
+```typescript
+const paginator = mapper.scan(MyDomainObject, {
+  startKey: {
+    id: 'foo',
+    createdAt: new Date(946684800000),
+  },
+}).pages()
+
+const domainObjects = []
+
+for await (const page of paginator) {
+  // page will be an array of items yielded from the scan
+  // Note: the last evaluated key is automatically passed to the next scan operation
+  domainObjects.push(...page)
+  
+  // You can also access the last evaluated key as an object of the shape of your model:
+  console.log(paginator.lastEvaluatedKey)
+}
+```
+
+### `query`
 
 Finds a specific item (or range of items) in a table or index
 
 ```typescript
-for await (const foo of mapper.query(MyDomainObject, {id: 'foo'})) {
+for await (const foo of mapper.query(MyDomainObject, { id: 'foo' })) {
     // individual items with a hash key of "foo" will be yielded as the query is performed
 }
 ```
 
-#### Batch operations
+You can also use the `pages()` method to read items in pages and get the last evaluated key:
+
+```typescript
+const paginator = mapper.query(MyDomainObject, {
+  type: 'Equals',
+  subject: 'id',
+  object: 'foo',
+}, {
+  startKey: {
+    id: 'foo',
+    createdAt: new Date(946684800000),
+  },
+}).pages()
+
+const domainObjects = []
+
+for await (const page of paginator) {
+  // page will be an array of items yielded from the scan
+  // Note: the last evaluated key is automatically passed to the next scan operation
+  domainObjects.push(...page)
+  
+  // You can also access the last evaluated key as an object of the shape of your model:
+  console.log(paginator.lastEvaluatedKey)
+}
+```
+
+## Batch Operations
 
 The mapper also supports batch operations. Under the hood, the batch will
 automatically be split into chunks that fall within DynamoDB's limits (25 for
@@ -158,28 +238,28 @@ automatically be split into chunks that fall within DynamoDB's limits (25 for
 number of tables, and exponential backoff for unprocessed items is handled
 automatically.
 
-##### `batchPut`
+### `batchPut`
 
 Creates (or overwrites) multiple items in the table
 
 ```typescript
 const toSave = [
-    Object.assign(new MyDomainObject, {id: 'foo', completed: false}),
-    Object.assign(new MyDomainObject, {id: 'bar', completed: false})
+    new MyDomainObject({id: 'foo', completed: false}),
+    new MyDomainObject({id: 'bar', completed: false}),
 ];
 for await (const persisted of mapper.batchPut(toSave)) {
     // items will be yielded as they are successfully written
 }
 ```
 
-##### `batchGet`
+### `batchGet`
 
 Fetches multiple items from the table
 
 ```typescript
 const toGet = [
-    Object.assign(new MyDomainObject, {id: 'foo', createdAt: new Date(946684800000)}),
-    Object.assign(new MyDomainObject, {id: 'bar', createdAt: new Date(946684800001)})
+    new MyDomainObject({id: 'foo', createdAt: new Date(946684800000)}),
+    new MyDomainObject({id: 'bar', createdAt: new Date(946684800001)}),
 ];
 for await (const found of mapper.batchGet(toGet)) {
     // items will be yielded as they are successfully retrieved
@@ -195,17 +275,20 @@ Removes multiple items from the table
 
 ```typescript
 const toRemove = [
-    Object.assign(new MyDomainObject, {id: 'foo', createdAt: new Date(946684800000)}),
-    Object.assign(new MyDomainObject, {id: 'bar', createdAt: new Date(946684800001)})
+    new MyDomainObject({ id: 'foo', createdAt: new Date(946684800000) }),
+    new MyDomainObject({ id: 'bar', createdAt: new Date(946684800001) }),
 ];
 for await (const found of mapper.batchDelete(toRemove)) {
     // items will be yielded as they are successfully removed
 }
 ```
 
-#### Operations with Expressions
 
-##### Aplication example
+### Operations with Expressions
+
+#### Application example
+
+The following example shows how to use the mapper with expressions. It will only insert a new record if the email is not already in use.
 
 ```typescript
 import {
@@ -219,6 +302,10 @@ const expr = new UpdateExpression();
 // given the anotation bellow
 @table('tableName')
 class MyRecord {
+    public constructor(partial?: Partial<MyRecord>) {
+        Object.assign(this, partial)
+    }
+  
     @hashKey()
     email?: string;
 
@@ -236,43 +323,38 @@ class MyRecord {
 }
 
 // you make a mapper operation as follows
-const aRecord = Object.assign(new MyRecord(), {
+const aRecord = new MyRecord({
     email,
     passwordHash: password,
     passwordSalt: salt,
     verified: false,
     verifyToken: token,
 });
-mapper.put(aRecord, { 
-    condition: new FunctionExpression('attribute_not_exists', new AttributePath('email') 
-}).then( /* result handler */ );
+
+const result = await mapper.put(aRecord, { 
+    condition: new FunctionExpression('attribute_not_exists', new AttributePath('email')) 
+})
 ``` 
 
-#### Table lifecycle operations
+### Table lifecycle operations
 
-##### `createTable`
+#### `createTable`
 
 Creates a table for the mapped class and waits for it to be initialized:
 
 ```typescript
-mapper.createTable(MyDomainObject, {readCapacityUnits: 5, writeCapacityUnits: 5})
-    .then(() => {
-        // the table has been provisioned and is ready for use!
-    })
+await mapper.createTable(MyDomainObject, {readCapacityUnits: 5, writeCapacityUnits: 5})
 ```
 
-##### `ensureTableExists`
+#### `ensureTableExists`
 
 Like `createTable`, but only creates the table if it doesn't already exist:
 
 ```typescript
-mapper.ensureTableExists(MyDomainObject, {readCapacityUnits: 5, writeCapacityUnits: 5})
-    .then(() => {
-        // the table has been provisioned and is ready for use!
-    })
+await mapper.ensureTableExists(MyDomainObject, {readCapacityUnits: 5, writeCapacityUnits: 5})
 ```
 
-##### `deleteTable`
+#### `deleteTable`
 
 Deletes the table for the mapped class and waits for it to be removed:
 
@@ -280,7 +362,7 @@ Deletes the table for the mapped class and waits for it to be removed:
 await mapper.deleteTable(MyDomainObject)
 ```
 
-##### `ensureTableNotExists`
+#### `ensureTableNotExists`
 
 Like `deleteTable`, but only deletes the table if it exists:
 
@@ -288,10 +370,113 @@ Like `deleteTable`, but only deletes the table if it exists:
 await mapper.ensureTableNotExists(MyDomainObject)
 ```
 
+## Advanced Usage
+
+### Optimistic Locking
+
+The Nova ODM supports [optimistic locking](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/DynamoDBMapper.OptimisticLocking.html) via the `versionAttribute` decorator.
+
+```typescript
+import { attribute, hashKey, rangeKey, table, versionAttribute } from '@nova-odm/annotations'
+import { State, JourneyModel } from '../journey'
+
+@table('posts')
+export class Post {
+  public constructor(partial?: Partial<Post>) {
+    Object.assign(this, partial)
+  }
+
+  @hashKey()
+  public id: string
+
+  @attribute()
+  public title: string
+
+  @attribute()
+  public text: string
+
+  @versionAttribute()
+  public version: number
+}
+```
+
+Every time an item is saved, the version attribute will be incremented. If the version attribute is not present on the item, it will be set to `1`. If the version attribute is present but does not match the version of the item in the table, the save will fail with a `ConditionalCheckFailedException`.
+
+You can also skip the version check/increment by passing `skipVersionCheck: true` to the `put` or `update` methods.
+
+```typescript
+await mapper.update({
+  item: new Post({
+    id: '123',
+    title: 'My Post',
+  }),
+  onMissing: 'skip',
+  skipVersionCheck: true,
+})
+```
+
+## Using with esbuild
+
+Nova ODM is written in TypeScript and can be used with [esbuild](https://esbuild.github.io/) to bundle your application. However, esbuild does not emit decorator metadata, so we recommend using a `esbuild-plugin-tsc` plugin.
+
+
+First, install the plugin and `typescript`:
+
+```shell
+npm install --save-dev esbuild-plugin-tsc typescript
+```
+
+or
+
+```shell
+yarn add -D esbuild-plugin-tsc typescript
+```
+
+Then, add the plugin to your esbuild configuration:
+
+Javascript:
+   ```diff
+   +const esbuildPluginTsc = require('esbuild-plugin-tsc');
+    ...
+    esbuild.build({
+      ...
+      plugins: [
+   +    esbuildPluginTsc(),
+      ],
+    })
+   ```
+
+Typescript:
+   ```diff
+   +import esbuildPluginTsc from 'esbuild-plugin-tsc';
+    ...
+    esbuild.build({
+      ...
+      plugins: [
+   +    esbuildPluginTsc(),
+      ],
+    })
+   ```
+
+## Migrating from the original dynamodb-data-mapper-js
+
+This project provides drop-in replacement packages for the original packages. Replace your dependencies / imports with the following respective packages:
+
+| dynamodb-data-mapper-js               | Nova ODM                  |
+|---------------------------------------|---------------------------|
+| @aws/dynamodb-data-mapper             | @nova-odm/mapper          |
+| @aws/dynamodb-query-iterator          | @nova-odm/query-iterator  |
+| @aws/dynamodb-data-marshaller         | @nova-odm/marshaller      |
+| @aws/dynamodb-expressions             | @nova-odm/expressions     |
+| @aws/dynamodb-batch-iterator          | @nova-odm/batch-iterator  |
+| @aws/dynamodb-auto-marshaller         | @nova-odm/auto-marshaller |
+| @aws/dynamodb-data-mapper-annotations | @nova-odm/annotations     |
+
+
 ## Constituent packages
 
-The DataMapper is developed as a monorepo using [`lerna`](https://github.com/lerna/lerna).
-More detailed documentation about the mapper's constituent packages is available
+The Nova ODM is developed as a monorepo using [`lerna`](https://github.com/lerna/lerna).
+More detailed documentation about the ODM's constituent packages is available
 by viewing those packages directly.
 
 * [Nova ODM / Amazon DynamoDB Automarshaller](packages/auto-marshaller/)
