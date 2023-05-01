@@ -1,6 +1,6 @@
 {
   "name": "@nova-odm/expressions",
-  "version": "0.8.5",
+  "version": "0.8.6",
   "description": "Composable expression objects for Amazon DynamoDB",
   "keywords": [
     "aws",
@@ -39,7 +39,7 @@
     "@aws-sdk/client-dynamodb": "^3.284.0"
   },
   "dependencies": {
-    "@nova-odm/auto-marshaller": "^0.8.5",
+    "@nova-odm/auto-marshaller": "^0.8.6",
     "tslib": "^2.5.0"
   },
   "publishConfig": {
