@@ -1,6 +1,6 @@
 {
   "name": "@nova-odm/auto-marshaller",
-  "version": "0.8.6",
+  "version": "0.8.7",
   "description": "A data marshaller that converts JavaScript types into Amazon DynamoDB AttributeValues",
   "keywords": [
     "aws",
