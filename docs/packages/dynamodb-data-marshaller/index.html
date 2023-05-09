@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@nova-odm/marshaller</title><meta name="description" content="Documentation for @nova-odm/marshaller"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@nova-odm/marshaller</title><meta name="description" content="Documentation for @nova-odm/marshaller"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/search.js" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container">
 <div class="table-cell" id="tsd-search" data-base=".">
 <div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
@@ -9,48 +9,36 @@
 <li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@nova-odm/marshaller</a></div>
 <div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
 <div class="container container-main">
-<div class="col-8 col-content">
+<div class="col-content">
 <div class="tsd-page-title">
 <h2>@nova-odm/marshaller</h2></div>
-<div class="tsd-panel tsd-typography">
-<a href="#nova-odm--amazon-dynamodb-data-marshaller" id="nova-odm--amazon-dynamodb-data-marshaller" style="color: inherit; text-decoration: none;">
-  <h1>Nova ODM / Amazon DynamoDB Data Marshaller</h1>
-</a>
-<p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/github/license/ArsenyYankovsky/nova-odm.svg?style=flat" alt="Apache 2 License"></a></p>
+<div class="tsd-panel tsd-typography"><a id="md:nova-odm--amazon-dynamodb-data-marshaller" class="tsd-anchor"></a><h1><a href="#md:nova-odm--amazon-dynamodb-data-marshaller">Nova ODM / Amazon DynamoDB Data Marshaller</a></h1><p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/github/license/ArsenyYankovsky/nova-odm.svg?style=flat" alt="Apache 2 License"></a></p>
 <p>This library provides an <code>marshallItem</code> and <code>unmarshallItem</code> functions that
 convert native JavaScript values to DynamoDB AttributeValues and back again,
 respectively, based on a defined schema. While many JavaScript values map
 cleanly to DynamoDB data types and vice versa, schemas allow you to losslessly
 persist any JavaScript type, including dates, class instances, and empty
 strings.</p>
-
-<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-  <h2>Getting started</h2>
-</a>
-<p>To use the data marshaller, begin by defining a schema that describes the
+<a id="md:getting-started" class="tsd-anchor"></a><h2><a href="#md:getting-started">Getting started</a></h2><p>To use the data marshaller, begin by defining a schema that describes the
 relationship between your application&#39;s domain objects and their serialized form
 in a DynamoDB table:</p>
 <pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">schema</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">foo:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Binary&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">bar:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Boolean&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">baz:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">quux:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Document&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-3">members:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-3">fizz:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Set&#39;</span><span class="hl-1">, </span><span class="hl-3">memberType:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">            </span><span class="hl-3">buzz:</span><span class="hl-1"> {</span><br/><span class="hl-1">                </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Tuple&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">                </span><span class="hl-3">members:</span><span class="hl-1"> [</span><br/><span class="hl-1">                    {</span><br/><span class="hl-1">                        </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;List&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">                        </span><span class="hl-3">memberType:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Set&#39;</span><span class="hl-1">, </span><span class="hl-3">memberType:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">                    },</span><br/><span class="hl-1">                    {</span><br/><span class="hl-1">                        </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Map&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">                        </span><span class="hl-3">memberType:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Date&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">                    }</span><br/><span class="hl-1">                ]</span><br/><span class="hl-1">            },</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">};</span>
-</code></pre>
+</code><button>Copy</button></pre>
 <p>This schema may be used to marshall JavaScript values to DynamoDB attribute
 values:</p>
 <pre><code class="language-javascript"><span class="hl-5">import</span><span class="hl-1"> {</span><span class="hl-3">marshallItem</span><span class="hl-1">} </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-4">&#39;@nova-odm/marshaller&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">marshalled</span><span class="hl-1"> = </span><span class="hl-6">marshallItem</span><span class="hl-1">(</span><span class="hl-3">schema</span><span class="hl-1">, {</span><br/><span class="hl-1">    </span><span class="hl-3">foo:</span><span class="hl-1"> </span><span class="hl-3">Uint8Array</span><span class="hl-1">.</span><span class="hl-6">from</span><span class="hl-1">([</span><span class="hl-7">0xde</span><span class="hl-1">, </span><span class="hl-7">0xad</span><span class="hl-1">, </span><span class="hl-7">0xbe</span><span class="hl-1">, </span><span class="hl-7">0xef</span><span class="hl-1">]),</span><br/><span class="hl-1">    </span><span class="hl-3">bar:</span><span class="hl-1"> </span><span class="hl-0">false</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">baz:</span><span class="hl-1"> </span><span class="hl-4">&#39;&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">quux:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">fizz:</span><span class="hl-1"> </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-6">Set</span><span class="hl-1">([</span><span class="hl-4">&#39;a&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;b&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;c&#39;</span><span class="hl-1">]),</span><br/><span class="hl-1">        </span><span class="hl-3">buzz:</span><span class="hl-1"> [</span><br/><span class="hl-1">            [</span><br/><span class="hl-1">                </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-6">Set</span><span class="hl-1">([</span><span class="hl-7">1</span><span class="hl-1">, </span><span class="hl-7">2</span><span class="hl-1">, </span><span class="hl-7">3</span><span class="hl-1">]),</span><br/><span class="hl-1">                </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-6">Set</span><span class="hl-1">([</span><span class="hl-7">2</span><span class="hl-1">, </span><span class="hl-7">3</span><span class="hl-1">, </span><span class="hl-7">4</span><span class="hl-1">]),</span><br/><span class="hl-1">                </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-6">Set</span><span class="hl-1">([</span><span class="hl-7">3</span><span class="hl-1">, </span><span class="hl-7">4</span><span class="hl-1">, </span><span class="hl-7">5</span><span class="hl-1">]),</span><br/><span class="hl-1">            ],</span><br/><span class="hl-1">            </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-6">Map</span><span class="hl-1">([</span><br/><span class="hl-1">                [</span><span class="hl-4">&#39;now&#39;</span><span class="hl-1">, </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-6">Date</span><span class="hl-1">()],</span><br/><span class="hl-1">                [</span><span class="hl-4">&#39;then&#39;</span><span class="hl-1">, </span><span class="hl-0">new</span><span class="hl-1"> </span><span class="hl-6">Date</span><span class="hl-1">(</span><span class="hl-7">0</span><span class="hl-1">)],</span><br/><span class="hl-1">            ]),</span><br/><span class="hl-1">        ]</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">});</span>
-</code></pre>
+</code><button>Copy</button></pre>
 <p>The schema can also be used to unmarshall DynamoDB attribute values back to
 their original JavaScript representation:</p>
 <pre><code class="language-javascript"><span class="hl-5">import</span><span class="hl-1"> {</span><span class="hl-3">unmarshallItem</span><span class="hl-1">} </span><span class="hl-5">from</span><span class="hl-1"> </span><span class="hl-4">&#39;@nova-odm/marshaller&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">unmarshalled</span><span class="hl-1"> = </span><span class="hl-6">unmarshallItem</span><span class="hl-1">(</span><span class="hl-3">schema</span><span class="hl-1">, {</span><br/><span class="hl-1">    </span><span class="hl-3">foo:</span><span class="hl-1"> {</span><span class="hl-3">B:</span><span class="hl-1"> </span><span class="hl-3">Uint8Array</span><span class="hl-1">.</span><span class="hl-6">from</span><span class="hl-1">([</span><span class="hl-7">0xde</span><span class="hl-1">, </span><span class="hl-7">0xad</span><span class="hl-1">, </span><span class="hl-7">0xbe</span><span class="hl-1">, </span><span class="hl-7">0xef</span><span class="hl-1">])},</span><br/><span class="hl-1">    </span><span class="hl-3">bar:</span><span class="hl-1"> {</span><span class="hl-3">BOOL:</span><span class="hl-1"> </span><span class="hl-0">false</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">baz:</span><span class="hl-1"> {</span><span class="hl-3">NULL:</span><span class="hl-1"> </span><span class="hl-0">true</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">quux:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">fizz:</span><span class="hl-1"> {</span><span class="hl-3">SS:</span><span class="hl-1"> [</span><span class="hl-4">&#39;a&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;b&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;c&#39;</span><span class="hl-1">]},</span><br/><span class="hl-1">        </span><span class="hl-3">buzz:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-3">L:</span><span class="hl-1"> [</span><br/><span class="hl-1">                </span><span class="hl-2">L</span><span class="hl-1">: [</span><br/><span class="hl-1">                    {</span><span class="hl-3">NS:</span><span class="hl-1"> [</span><span class="hl-4">&#39;1&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;2&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;3&#39;</span><span class="hl-1">]},</span><br/><span class="hl-1">                    {</span><span class="hl-3">NS:</span><span class="hl-1"> [</span><span class="hl-4">&#39;2&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;3&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;4&#39;</span><span class="hl-1">]},</span><br/><span class="hl-1">                    {</span><span class="hl-3">NS:</span><span class="hl-1"> [</span><span class="hl-4">&#39;3&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;4&#39;</span><span class="hl-1">, </span><span class="hl-4">&#39;5&#39;</span><span class="hl-1">]},</span><br/><span class="hl-1">                ],</span><br/><span class="hl-1">                </span><span class="hl-2">M</span><span class="hl-1">: {</span><br/><span class="hl-1">                    </span><span class="hl-3">now:</span><span class="hl-1"> {</span><span class="hl-3">N:</span><span class="hl-1"> </span><span class="hl-4">&#39;1507189047&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">                    </span><span class="hl-3">then:</span><span class="hl-1"> {</span><span class="hl-3">N:</span><span class="hl-1"> </span><span class="hl-4">&#39;0&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">                },</span><br/><span class="hl-1">            ],</span><br/><span class="hl-1">        },</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">});</span>
-</code></pre>
-
-<a href="#specifying-keys" id="specifying-keys" style="color: inherit; text-decoration: none;">
-  <h2>Specifying keys</h2>
-</a>
-<p>DynamoDB tables must define a hash key and may optionally define a range key. In
+</code><button>Copy</button></pre>
+<a id="md:specifying-keys" class="tsd-anchor"></a><h2><a href="#md:specifying-keys">Specifying keys</a></h2><p>DynamoDB tables must define a hash key and may optionally define a range key. In
 DynamoDB documentation, these keys are sometimes referred to as <em>partition</em> and
 <em>sort</em> keys, respectively. To declare a property to be a key, add a <code>keyType</code>
 property to its property schema (example taken from the <a href="http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html">DynamoDB developer
 guide</a>):</p>
 <pre><code class="language-javascript"><span class="hl-8">// Table model taken from http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/GSI.html</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">gameScores</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">UserId:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-3">keyType:</span><span class="hl-1"> </span><span class="hl-4">&#39;HASH&#39;</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    </span><span class="hl-3">GameTitle:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-3">keyType:</span><span class="hl-1"> </span><span class="hl-4">&#39;RANGE&#39;</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    </span><span class="hl-3">TopScore:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">TopScoreDateTime:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Date&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">Wins:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">Losses:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">};</span>
-</code></pre>
+</code><button>Copy</button></pre>
 <p>The <code>keyType</code> attribute may only be used in types that are serialized as
 strings, numbers, or binary attributes. In addition to <code>&#39;String&#39;</code>, <code>&#39;Number&#39;</code>,
 and <code>&#39;Binary&#39;</code> properties, it may be used on <code>&#39;Date&#39;</code> and <code>&#39;Custom&#39;</code> properties.</p>
@@ -60,206 +48,79 @@ example given above, you could add the index key declarations described in <a hr
 DynamoDB Global Secondary Index developer guide</a>
 as follows:</p>
 <pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">gameScores</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">UserId:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-3">keyType:</span><span class="hl-1"> </span><span class="hl-4">&#39;HASH&#39;</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    </span><span class="hl-3">GameTitle:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-3">keyType:</span><span class="hl-1"> </span><span class="hl-4">&#39;RANGE&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-3">indexKeyConfigurations:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-3">GameTitleIndex:</span><span class="hl-1"> </span><span class="hl-4">&#39;HASH&#39;</span><br/><span class="hl-1">        }</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    </span><span class="hl-3">TopScore:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-3">indexKeyConfigurations:</span><span class="hl-1"> {</span><br/><span class="hl-1">            </span><span class="hl-3">GameTitleIndex:</span><span class="hl-1"> </span><span class="hl-4">&#39;RANGE&#39;</span><br/><span class="hl-1">        }</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    </span><span class="hl-3">TopScoreDateTime:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Date&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">Wins:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">Losses:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#supplying-defaults" id="supplying-defaults" style="color: inherit; text-decoration: none;">
-  <h2>Supplying defaults</h2>
-</a>
-<p>Any property schema may define a <code>defaultProvider</code> function to be called when a
+</code><button>Copy</button></pre>
+<a id="md:supplying-defaults" class="tsd-anchor"></a><h2><a href="#md:supplying-defaults">Supplying defaults</a></h2><p>Any property schema may define a <code>defaultProvider</code> function to be called when a
 field is <code>undefined</code> in the input provided to <code>marshallItem</code>. This function must
 return a raw JavaScript value and should not return an already-marshalled
 DynamoDB AttributeValue shape.</p>
 <pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">uuidV4</span><span class="hl-1"> = </span><span class="hl-6">require</span><span class="hl-1">(</span><span class="hl-4">&#39;uuid/v4&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">schema</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">key:</span><span class="hl-1"> {</span><br/><span class="hl-1">        </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-3">defaultProvider:</span><span class="hl-1"> </span><span class="hl-3">uuidV4</span><span class="hl-1">,</span><br/><span class="hl-1">        </span><span class="hl-3">keyType:</span><span class="hl-1"> </span><span class="hl-4">&#39;HASH&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    </span><span class="hl-8">// ...</span><br/><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#supported-types" id="supported-types" style="color: inherit; text-decoration: none;">
-  <h2>Supported types</h2>
-</a>
-
-<a href="#any" id="any" style="color: inherit; text-decoration: none;">
-  <h3>Any</h3>
-</a>
-<p>Will be marshalled and unmarshalled using the <code>@nova-odm/auto-marshaller</code>
+</code><button>Copy</button></pre>
+<a id="md:supported-types" class="tsd-anchor"></a><h2><a href="#md:supported-types">Supported types</a></h2><a id="md:any" class="tsd-anchor"></a><h3><a href="#md:any">Any</a></h3><p>Will be marshalled and unmarshalled using the <code>@nova-odm/auto-marshaller</code>
 package, which detects the type of a given value at runtime.</p>
-
-<a href="#example" id="example" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">anyProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Any&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-8">// optionally, you may specify configuration options for the</span><br/><span class="hl-1">    </span><span class="hl-8">// @nova-odm/auto-marshaller package&#39;s Marshaller class:</span><br/><span class="hl-1">    </span><span class="hl-3">unwrapNumbers:</span><span class="hl-1"> </span><span class="hl-0">false</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onInvalid:</span><span class="hl-1"> </span><span class="hl-4">&#39;omit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onEmpty:</span><span class="hl-1"> </span><span class="hl-4">&#39;nullify&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#binary" id="binary" style="color: inherit; text-decoration: none;">
-  <h3>Binary</h3>
-</a>
-<p>Used for <code>ArrayBuffer</code> and <code>ArrayBufferView</code> objects, as well as Node.JS
+<a id="md:example" class="tsd-anchor"></a><h4><a href="#md:example">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">anyProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Any&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-8">// optionally, you may specify configuration options for the</span><br/><span class="hl-1">    </span><span class="hl-8">// @nova-odm/auto-marshaller package&#39;s Marshaller class:</span><br/><span class="hl-1">    </span><span class="hl-3">unwrapNumbers:</span><span class="hl-1"> </span><span class="hl-0">false</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onInvalid:</span><span class="hl-1"> </span><span class="hl-4">&#39;omit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onEmpty:</span><span class="hl-1"> </span><span class="hl-4">&#39;nullify&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:binary" class="tsd-anchor"></a><h3><a href="#md:binary">Binary</a></h3><p>Used for <code>ArrayBuffer</code> and <code>ArrayBufferView</code> objects, as well as Node.JS
 buffers.</p>
 <p><strong>May be used as a table or index key.</strong></p>
-
-<a href="#example-1" id="example-1" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">binaryProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Binary&#39;</span><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#boolean" id="boolean" style="color: inherit; text-decoration: none;">
-  <h3>Boolean</h3>
-</a>
-<p>Used for <code>true</code>/<code>false</code> values.</p>
-
-<a href="#example-2" id="example-2" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">booleanProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Boolean&#39;</span><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#collection" id="collection" style="color: inherit; text-decoration: none;">
-  <h3>Collection</h3>
-</a>
-<p>Denotes a list of untyped items. The constituent items will be marshalled and
+<a id="md:example-1" class="tsd-anchor"></a><h4><a href="#md:example-1">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">binaryProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Binary&#39;</span><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:boolean" class="tsd-anchor"></a><h3><a href="#md:boolean">Boolean</a></h3><p>Used for <code>true</code>/<code>false</code> values.</p>
+<a id="md:example-2" class="tsd-anchor"></a><h4><a href="#md:example-2">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">booleanProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Boolean&#39;</span><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:collection" class="tsd-anchor"></a><h3><a href="#md:collection">Collection</a></h3><p>Denotes a list of untyped items. The constituent items will be marshalled and
 unmarshalled using the <code>@nova-odm/auto-marshaller</code>.</p>
-
-<a href="#example-3" id="example-3" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">collectionProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Collection&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-8">// optionally, you may specify configuration options for the</span><br/><span class="hl-1">    </span><span class="hl-8">// @nova-odm/auto-marshaller package&#39;s Marshaller class:</span><br/><span class="hl-1">    </span><span class="hl-3">unwrapNumbers:</span><span class="hl-1"> </span><span class="hl-0">false</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onInvalid:</span><span class="hl-1"> </span><span class="hl-4">&#39;omit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onEmpty:</span><span class="hl-1"> </span><span class="hl-4">&#39;nullify&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#custom" id="custom" style="color: inherit; text-decoration: none;">
-  <h3>Custom</h3>
-</a>
-<p>Allows the use of bespoke marshalling and unmarshalling functions. The type
+<a id="md:example-3" class="tsd-anchor"></a><h4><a href="#md:example-3">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">collectionProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Collection&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-8">// optionally, you may specify configuration options for the</span><br/><span class="hl-1">    </span><span class="hl-8">// @nova-odm/auto-marshaller package&#39;s Marshaller class:</span><br/><span class="hl-1">    </span><span class="hl-3">unwrapNumbers:</span><span class="hl-1"> </span><span class="hl-0">false</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onInvalid:</span><span class="hl-1"> </span><span class="hl-4">&#39;omit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onEmpty:</span><span class="hl-1"> </span><span class="hl-4">&#39;nullify&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:custom" class="tsd-anchor"></a><h3><a href="#md:custom">Custom</a></h3><p>Allows the use of bespoke marshalling and unmarshalling functions. The type
 definition for a <code>&#39;Custom&#39;</code> property must include a <code>marshall</code> function that
 converts the type&#39;s JavaScript representation to a DynamoDB AttributeValue and
 an <code>unmarshall</code> function that converts the AttributeValue back to a JavaScript
 value.</p>
 <p><strong>May be used as a table or index key.</strong></p>
-
-<a href="#example-4" id="example-4" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-8">// This custom property handles strings</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">customProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Custom&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">marshall</span><span class="hl-1">(</span><span class="hl-3">input</span><span class="hl-1">) {</span><br/><span class="hl-1">        </span><span class="hl-5">return</span><span class="hl-1"> {</span><span class="hl-3">S:</span><span class="hl-1"> </span><span class="hl-3">input</span><span class="hl-1">};</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    </span><span class="hl-6">unmarshall</span><span class="hl-1">(</span><span class="hl-3">persistedValue</span><span class="hl-1">) {</span><br/><span class="hl-1">        </span><span class="hl-5">return</span><span class="hl-1"> </span><span class="hl-3">persistedValue</span><span class="hl-1">.</span><span class="hl-2">S</span><span class="hl-1">;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#date" id="date" style="color: inherit; text-decoration: none;">
-  <h3>Date</h3>
-</a>
-<p>Used for time data. Dates will be serialized to DynamoDB as epoch timestamps
+<a id="md:example-4" class="tsd-anchor"></a><h4><a href="#md:example-4">Example</a></h4><pre><code class="language-javascript"><span class="hl-8">// This custom property handles strings</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">customProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Custom&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-6">marshall</span><span class="hl-1">(</span><span class="hl-3">input</span><span class="hl-1">) {</span><br/><span class="hl-1">        </span><span class="hl-5">return</span><span class="hl-1"> {</span><span class="hl-3">S:</span><span class="hl-1"> </span><span class="hl-3">input</span><span class="hl-1">};</span><br/><span class="hl-1">    },</span><br/><span class="hl-1">    </span><span class="hl-6">unmarshall</span><span class="hl-1">(</span><span class="hl-3">persistedValue</span><span class="hl-1">) {</span><br/><span class="hl-1">        </span><span class="hl-5">return</span><span class="hl-1"> </span><span class="hl-3">persistedValue</span><span class="hl-1">.</span><span class="hl-2">S</span><span class="hl-1">;</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:date" class="tsd-anchor"></a><h3><a href="#md:date">Date</a></h3><p>Used for time data. Dates will be serialized to DynamoDB as epoch timestamps
 for easy integration with DynamoDB&#39;s time-to-live feature. As a result, timezone
 information will not be persisted.</p>
 <p><strong>May be used as a table or index key.</strong></p>
-
-<a href="#example-5" id="example-5" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">dateProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Date&#39;</span><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#document" id="document" style="color: inherit; text-decoration: none;">
-  <h3>Document</h3>
-</a>
-<p>Used for object values that have their own schema and (optionally) constructor.</p>
-
-<a href="#example-6" id="example-6" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-9">MyCustomDocument</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-6">method</span><span class="hl-1">() {</span><br/><span class="hl-1">        </span><span class="hl-8">// pass</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">    </span><br/><span class="hl-1">    </span><span class="hl-0">get</span><span class="hl-1"> </span><span class="hl-6">computedProperty</span><span class="hl-1">() {</span><br/><span class="hl-1">        </span><span class="hl-8">// pass</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-9">documentSchema</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">fizz</span><span class="hl-1">: {</span><span class="hl-3">type</span><span class="hl-1">: </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">buzz</span><span class="hl-1">: {</span><span class="hl-3">type</span><span class="hl-1">: </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">pop</span><span class="hl-1">: {</span><span class="hl-3">type</span><span class="hl-1">: </span><span class="hl-4">&#39;Date&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">documentProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Document&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">members:</span><span class="hl-1"> </span><span class="hl-3">documentSchema</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-8">// optionally, you may specify a constructor to use to create the object</span><br/><span class="hl-1">    </span><span class="hl-8">// that will underlie unmarshalled instances. If not specified,</span><br/><span class="hl-1">    </span><span class="hl-8">// Object.create(null) will be used.</span><br/><span class="hl-1">    </span><span class="hl-3">valueConstructor:</span><span class="hl-1"> </span><span class="hl-3">MyCustomDocument</span><br/><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#hash" id="hash" style="color: inherit; text-decoration: none;">
-  <h3>Hash</h3>
-</a>
-<p>Used for objects with string keys and untyped values.</p>
-
-<a href="#example-7" id="example-7" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">collectionProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Hash&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-8">// optionally, you may specify configuration options for the</span><br/><span class="hl-1">    </span><span class="hl-8">// @nova-odm/auto-marshaller package&#39;s Marshaller class:</span><br/><span class="hl-1">    </span><span class="hl-3">unwrapNumbers:</span><span class="hl-1"> </span><span class="hl-0">false</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onInvalid:</span><span class="hl-1"> </span><span class="hl-4">&#39;omit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onEmpty:</span><span class="hl-1"> </span><span class="hl-4">&#39;nullify&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#list" id="list" style="color: inherit; text-decoration: none;">
-  <h3>List</h3>
-</a>
-<p>Used for arrays or iterable objects whose elements are all of the same type.</p>
-
-<a href="#example-8" id="example-8" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">listOfStrings</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;List&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">memberType:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#map" id="map" style="color: inherit; text-decoration: none;">
-  <h3>Map</h3>
-</a>
-<p>Used for <code>Map</code> objects whose values are all of the same type.</p>
-
-<a href="#example-9" id="example-9" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">mapOfStrings</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Map&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">memberType:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#null" id="null" style="color: inherit; text-decoration: none;">
-  <h3>Null</h3>
-</a>
-<p>Used to serialize <code>null</code>. Often used as a sigil value.</p>
-
-<a href="#example-10" id="example-10" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">nullProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Null&#39;</span><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#number" id="number" style="color: inherit; text-decoration: none;">
-  <h3>Number</h3>
-</a>
-<p>Used to serialize numbers.</p>
+<a id="md:example-5" class="tsd-anchor"></a><h4><a href="#md:example-5">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">dateProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Date&#39;</span><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:document" class="tsd-anchor"></a><h3><a href="#md:document">Document</a></h3><p>Used for object values that have their own schema and (optionally) constructor.</p>
+<a id="md:example-6" class="tsd-anchor"></a><h4><a href="#md:example-6">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-9">MyCustomDocument</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-6">method</span><span class="hl-1">() {</span><br/><span class="hl-1">        </span><span class="hl-8">// pass</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">    </span><br/><span class="hl-1">    </span><span class="hl-0">get</span><span class="hl-1"> </span><span class="hl-6">computedProperty</span><span class="hl-1">() {</span><br/><span class="hl-1">        </span><span class="hl-8">// pass</span><br/><span class="hl-1">    }</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">class</span><span class="hl-1"> </span><span class="hl-9">documentSchema</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">fizz</span><span class="hl-1">: {</span><span class="hl-3">type</span><span class="hl-1">: </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">buzz</span><span class="hl-1">: {</span><span class="hl-3">type</span><span class="hl-1">: </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">    </span><span class="hl-3">pop</span><span class="hl-1">: {</span><span class="hl-3">type</span><span class="hl-1">: </span><span class="hl-4">&#39;Date&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">documentProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Document&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">members:</span><span class="hl-1"> </span><span class="hl-3">documentSchema</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-8">// optionally, you may specify a constructor to use to create the object</span><br/><span class="hl-1">    </span><span class="hl-8">// that will underlie unmarshalled instances. If not specified,</span><br/><span class="hl-1">    </span><span class="hl-8">// Object.create(null) will be used.</span><br/><span class="hl-1">    </span><span class="hl-3">valueConstructor:</span><span class="hl-1"> </span><span class="hl-3">MyCustomDocument</span><br/><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:hash" class="tsd-anchor"></a><h3><a href="#md:hash">Hash</a></h3><p>Used for objects with string keys and untyped values.</p>
+<a id="md:example-7" class="tsd-anchor"></a><h4><a href="#md:example-7">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">collectionProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Hash&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-8">// optionally, you may specify configuration options for the</span><br/><span class="hl-1">    </span><span class="hl-8">// @nova-odm/auto-marshaller package&#39;s Marshaller class:</span><br/><span class="hl-1">    </span><span class="hl-3">unwrapNumbers:</span><span class="hl-1"> </span><span class="hl-0">false</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onInvalid:</span><span class="hl-1"> </span><span class="hl-4">&#39;omit&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">onEmpty:</span><span class="hl-1"> </span><span class="hl-4">&#39;nullify&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:list" class="tsd-anchor"></a><h3><a href="#md:list">List</a></h3><p>Used for arrays or iterable objects whose elements are all of the same type.</p>
+<a id="md:example-8" class="tsd-anchor"></a><h4><a href="#md:example-8">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">listOfStrings</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;List&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">memberType:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:map" class="tsd-anchor"></a><h3><a href="#md:map">Map</a></h3><p>Used for <code>Map</code> objects whose values are all of the same type.</p>
+<a id="md:example-9" class="tsd-anchor"></a><h4><a href="#md:example-9">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">mapOfStrings</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Map&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">memberType:</span><span class="hl-1"> {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:null" class="tsd-anchor"></a><h3><a href="#md:null">Null</a></h3><p>Used to serialize <code>null</code>. Often used as a sigil value.</p>
+<a id="md:example-10" class="tsd-anchor"></a><h4><a href="#md:example-10">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">nullProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Null&#39;</span><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:number" class="tsd-anchor"></a><h3><a href="#md:number">Number</a></h3><p>Used to serialize numbers.</p>
 <p><strong>May be used as a table or index key.</strong></p>
-
-<a href="#example-11" id="example-11" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">numberProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#set" id="set" style="color: inherit; text-decoration: none;">
-  <h3>Set</h3>
-</a>
-<p>Used to serialize sets whose values are all of the same type. DynamoDB allows
+<a id="md:example-11" class="tsd-anchor"></a><h4><a href="#md:example-11">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">numberProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:set" class="tsd-anchor"></a><h3><a href="#md:set">Set</a></h3><p>Used to serialize sets whose values are all of the same type. DynamoDB allows
 sets of numbers, sets of strings, and sets of binary values.</p>
-
-<a href="#example-12" id="example-12" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">binarySetProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Set&#39;</span><span class="hl-1">, </span><span class="hl-3">memberType:</span><span class="hl-1"> </span><span class="hl-4">&#39;Binary&#39;</span><span class="hl-1">};</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">numberSetProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Set&#39;</span><span class="hl-1">, </span><span class="hl-3">memberType:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">};</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">stringSetProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Set&#39;</span><span class="hl-1">, </span><span class="hl-3">memberType:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#string" id="string" style="color: inherit; text-decoration: none;">
-  <h3>String</h3>
-</a>
-<p>Used to serialize strings.</p>
+<a id="md:example-12" class="tsd-anchor"></a><h4><a href="#md:example-12">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">binarySetProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Set&#39;</span><span class="hl-1">, </span><span class="hl-3">memberType:</span><span class="hl-1"> </span><span class="hl-4">&#39;Binary&#39;</span><span class="hl-1">};</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">numberSetProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Set&#39;</span><span class="hl-1">, </span><span class="hl-3">memberType:</span><span class="hl-1"> </span><span class="hl-4">&#39;Number&#39;</span><span class="hl-1">};</span><br/><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">stringSetProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Set&#39;</span><span class="hl-1">, </span><span class="hl-3">memberType:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:string" class="tsd-anchor"></a><h3><a href="#md:string">String</a></h3><p>Used to serialize strings.</p>
 <p><strong>May be used as a table or index key.</strong></p>
-
-<a href="#example-13" id="example-13" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">stringProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">};</span>
-</code></pre>
-
-<a href="#tuple" id="tuple" style="color: inherit; text-decoration: none;">
-  <h3>Tuple</h3>
-</a>
-<p>Used to store arrays that have a specific length and sequence of elements.</p>
-
-<a href="#example-14" id="example-14" style="color: inherit; text-decoration: none;">
-  <h4>Example</h4>
-</a>
-<pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">tupleProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Tuple&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">members:</span><span class="hl-1"> [</span><br/><span class="hl-1">        {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Boolean&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">        {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">};</span>
-</code></pre>
+<a id="md:example-13" class="tsd-anchor"></a><h4><a href="#md:example-13">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">stringProperty</span><span class="hl-1"> = {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
+<a id="md:tuple" class="tsd-anchor"></a><h3><a href="#md:tuple">Tuple</a></h3><p>Used to store arrays that have a specific length and sequence of elements.</p>
+<a id="md:example-14" class="tsd-anchor"></a><h4><a href="#md:example-14">Example</a></h4><pre><code class="language-javascript"><span class="hl-0">const</span><span class="hl-1"> </span><span class="hl-2">tupleProperty</span><span class="hl-1"> = {</span><br/><span class="hl-1">    </span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Tuple&#39;</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-3">members:</span><span class="hl-1"> [</span><br/><span class="hl-1">        {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;Boolean&#39;</span><span class="hl-1">},</span><br/><span class="hl-1">        {</span><span class="hl-3">type:</span><span class="hl-1"> </span><span class="hl-4">&#39;String&#39;</span><span class="hl-1">}</span><br/><span class="hl-1">    ]</span><br/><span class="hl-1">};</span>
+</code><button>Copy</button></pre>
 </div></div>
-<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="col-sidebar">
+<div class="page-menu">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
-<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg>Settings</h3></summary>
 <div class="tsd-accordion-details">
 <div class="tsd-filter-visibility">
 <h4 class="uppercase">Member Visibility</h4><form>
@@ -268,61 +129,130 @@ sets of numbers, sets of strings, and sets of binary values.</p>
 <li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
 <li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
 <div class="tsd-theme-toggle">
-<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
-<nav class="tsd-navigation primary">
-<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
-<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg>On This Page</h3></summary>
 <div class="tsd-accordion-details">
 <ul>
-<li class="current selected"><a href="modules.html">@nova-<wbr/>odm/marshaller</a>
-<ul></ul></li></ul></div></details></nav>
-<nav class="tsd-navigation secondary menu-sticky">
+<li>
 <ul>
-<li class="tsd-kind-class"><a href="classes/InvalidSchemaError.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-128-path"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)" id="icon-128-text"></path></svg>Invalid<wbr/>Schema<wbr/>Error</a></li>
-<li class="tsd-kind-class"><a href="classes/InvalidValueError.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg>Invalid<wbr/>Value<wbr/>Error</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/AnyType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-256-path"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)" id="icon-256-text"></path></svg>Any<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/AttributeTypeMap.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Attribute<wbr/>Type<wbr/>Map</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/BaseType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Base<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/BinaryType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Binary<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/BooleanType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Boolean<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/CollectionType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Collection<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/CustomType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Custom<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/DateType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Date<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/DocumentType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Document<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/HashType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Hash<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/KeySchema.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Key<wbr/>Schema</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/KeyTypeMap.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Key<wbr/>Type<wbr/>Map</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/KeyableType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Keyable<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/ListType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>List<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/MapType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Map<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/MarshalledExpression.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Marshalled<wbr/>Expression</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/NullType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Null<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/NumberType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Number<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/PerIndexKeys.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Per<wbr/>Index<wbr/>Keys</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/Schema.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Schema</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/SetType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Set<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/StringType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>String<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/TupleType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Tuple<wbr/>Type</a></li>
-<li class="tsd-kind-interface"><a href="interfaces/ZeroArgumentsConstructor.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg>Zero<wbr/>Arguments<wbr/>Constructor</a></li>
-<li class="tsd-kind-type-alias"><a href="types/KeyType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4194304-path"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)" id="icon-4194304-text"></path></svg>Key<wbr/>Type</a></li>
-<li class="tsd-kind-type-alias"><a href="types/ScalarAttributeType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Scalar<wbr/>Attribute<wbr/>Type</a></li>
-<li class="tsd-kind-type-alias"><a href="types/SchemaType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Schema<wbr/>Type</a></li>
-<li class="tsd-kind-type-alias"><a href="types/TypeTag.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg>Type<wbr/>Tag</a></li>
-<li class="tsd-kind-variable"><a href="variables/KeyTypes.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-variable)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-32-path"></rect><path d="M11.106 16L8.85 7.24H9.966L11.454 13.192C11.558 13.608 11.646 13.996 11.718 14.356C11.79 14.708 11.842 14.976 11.874 15.16C11.906 14.976 11.954 14.708 12.018 14.356C12.09 13.996 12.178 13.608 12.282 13.192L13.758 7.24H14.85L12.582 16H11.106Z" fill="var(--color-text)" id="icon-32-text"></path></svg>Key<wbr/>Types</a></li>
-<li class="tsd-kind-variable"><a href="variables/TypeTags.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg>Type<wbr/>Tags</a></li>
-<li class="tsd-kind-function"><a href="functions/getSchemaName.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg>get<wbr/>Schema<wbr/>Name</a></li>
-<li class="tsd-kind-function"><a href="functions/isKey.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>is<wbr/>Key</a></li>
-<li class="tsd-kind-function"><a href="functions/isSchema.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>is<wbr/>Schema</a></li>
-<li class="tsd-kind-function"><a href="functions/isSchemaType.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>is<wbr/>Schema<wbr/>Type</a></li>
-<li class="tsd-kind-function"><a href="functions/keysFromSchema.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>keys<wbr/>From<wbr/>Schema</a></li>
-<li class="tsd-kind-function"><a href="functions/marshallConditionExpression.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>marshall<wbr/>Condition<wbr/>Expression</a></li>
-<li class="tsd-kind-function"><a href="functions/marshallFunctionExpression.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>marshall<wbr/>Function<wbr/>Expression</a></li>
-<li class="tsd-kind-function"><a href="functions/marshallItem.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>marshall<wbr/>Item</a></li>
-<li class="tsd-kind-function"><a href="functions/marshallKey.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>marshall<wbr/>Key</a></li>
-<li class="tsd-kind-function"><a href="functions/marshallMathematicalExpression.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>marshall<wbr/>Mathematical<wbr/>Expression</a></li>
-<li class="tsd-kind-function"><a href="functions/marshallProjectionExpression.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>marshall<wbr/>Projection<wbr/>Expression</a></li>
-<li class="tsd-kind-function"><a href="functions/marshallUpdateExpression.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>marshall<wbr/>Update<wbr/>Expression</a></li>
-<li class="tsd-kind-function"><a href="functions/marshallValue.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>marshall<wbr/>Value</a></li>
-<li class="tsd-kind-function"><a href="functions/toSchemaName.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>to<wbr/>Schema<wbr/>Name</a></li>
-<li class="tsd-kind-function"><a href="functions/unmarshallItem.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>unmarshall<wbr/>Item</a></li></ul></nav></div></div>
-<div class="overlay"></div><script src="assets/main.js"></script></body></html>
+<li><a href="#md:nova-odm--amazon-dynamodb-data-marshaller"><span>Nova ODM / <wbr/>Amazon <wbr/>DynamoDB <wbr/>Data <wbr/>Marshaller</span></a></li>
+<li>
+<ul>
+<li><a href="#md:getting-started"><span>Getting started</span></a></li>
+<li><a href="#md:specifying-keys"><span>Specifying keys</span></a></li>
+<li><a href="#md:supplying-defaults"><span>Supplying defaults</span></a></li>
+<li><a href="#md:supported-types"><span>Supported types</span></a></li>
+<li>
+<ul>
+<li><a href="#md:any"><span>Any</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example"><span>Example</span></a></li></ul></li>
+<li><a href="#md:binary"><span>Binary</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-1"><span>Example</span></a></li></ul></li>
+<li><a href="#md:boolean"><span>Boolean</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-2"><span>Example</span></a></li></ul></li>
+<li><a href="#md:collection"><span>Collection</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-3"><span>Example</span></a></li></ul></li>
+<li><a href="#md:custom"><span>Custom</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-4"><span>Example</span></a></li></ul></li>
+<li><a href="#md:date"><span>Date</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-5"><span>Example</span></a></li></ul></li>
+<li><a href="#md:document"><span>Document</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-6"><span>Example</span></a></li></ul></li>
+<li><a href="#md:hash"><span>Hash</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-7"><span>Example</span></a></li></ul></li>
+<li><a href="#md:list"><span>List</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-8"><span>Example</span></a></li></ul></li>
+<li><a href="#md:map"><span>Map</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-9"><span>Example</span></a></li></ul></li>
+<li><a href="#md:null"><span>Null</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-10"><span>Example</span></a></li></ul></li>
+<li><a href="#md:number"><span>Number</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-11"><span>Example</span></a></li></ul></li>
+<li><a href="#md:set"><span>Set</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-12"><span>Example</span></a></li></ul></li>
+<li><a href="#md:string"><span>String</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-13"><span>Example</span></a></li></ul></li>
+<li><a href="#md:tuple"><span>Tuple</span></a></li>
+<li>
+<ul>
+<li><a href="#md:example-14"><span>Example</span></a></li></ul></li></ul></li></ul></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4-path"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)" id="icon-4-text"></path></svg><span>@nova-<wbr/>odm/marshaller</span></a>
+<ul class="tsd-small-nested-navigation">
+<li><a href="classes/InvalidSchemaError.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-class)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-128-path"></rect><path d="M11.898 16.1201C11.098 16.1201 10.466 15.8961 10.002 15.4481C9.53803 15.0001 9.30603 14.3841 9.30603 13.6001V9.64012C9.30603 8.85612 9.53803 8.24012 10.002 7.79212C10.466 7.34412 11.098 7.12012 11.898 7.12012C12.682 7.12012 13.306 7.34812 13.77 7.80412C14.234 8.25212 14.466 8.86412 14.466 9.64012H13.386C13.386 9.14412 13.254 8.76412 12.99 8.50012C12.734 8.22812 12.37 8.09212 11.898 8.09212C11.426 8.09212 11.054 8.22412 10.782 8.48812C10.518 8.75212 10.386 9.13212 10.386 9.62812V13.6001C10.386 14.0961 10.518 14.4801 10.782 14.7521C11.054 15.0161 11.426 15.1481 11.898 15.1481C12.37 15.1481 12.734 15.0161 12.99 14.7521C13.254 14.4801 13.386 14.0961 13.386 13.6001H14.466C14.466 14.3761 14.234 14.9921 13.77 15.4481C13.306 15.8961 12.682 16.1201 11.898 16.1201Z" fill="var(--color-text)" id="icon-128-text"></path></svg><span>Invalid<wbr/>Schema<wbr/>Error</span></a></li>
+<li><a href="classes/InvalidValueError.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-128-path"></use><use href="#icon-128-text"></use></svg><span>Invalid<wbr/>Value<wbr/>Error</span></a></li>
+<li><a href="interfaces/AnyType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-interface)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-256-path"></rect><path d="M9.51 16V15.016H11.298V8.224H9.51V7.24H14.19V8.224H12.402V15.016H14.19V16H9.51Z" fill="var(--color-text)" id="icon-256-text"></path></svg><span>Any<wbr/>Type</span></a></li>
+<li><a href="interfaces/AttributeTypeMap.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Attribute<wbr/>Type<wbr/>Map</span></a></li>
+<li><a href="interfaces/BaseType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Base<wbr/>Type</span></a></li>
+<li><a href="interfaces/BinaryType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Binary<wbr/>Type</span></a></li>
+<li><a href="interfaces/BooleanType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Boolean<wbr/>Type</span></a></li>
+<li><a href="interfaces/CollectionType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Collection<wbr/>Type</span></a></li>
+<li><a href="interfaces/CustomType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Custom<wbr/>Type</span></a></li>
+<li><a href="interfaces/DateType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Date<wbr/>Type</span></a></li>
+<li><a href="interfaces/DocumentType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Document<wbr/>Type</span></a></li>
+<li><a href="interfaces/HashType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Hash<wbr/>Type</span></a></li>
+<li><a href="interfaces/KeySchema.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Key<wbr/>Schema</span></a></li>
+<li><a href="interfaces/KeyTypeMap.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Key<wbr/>Type<wbr/>Map</span></a></li>
+<li><a href="interfaces/KeyableType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Keyable<wbr/>Type</span></a></li>
+<li><a href="interfaces/ListType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>List<wbr/>Type</span></a></li>
+<li><a href="interfaces/MapType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Map<wbr/>Type</span></a></li>
+<li><a href="interfaces/MarshalledExpression.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Marshalled<wbr/>Expression</span></a></li>
+<li><a href="interfaces/NullType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Null<wbr/>Type</span></a></li>
+<li><a href="interfaces/NumberType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Number<wbr/>Type</span></a></li>
+<li><a href="interfaces/PerIndexKeys.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Per<wbr/>Index<wbr/>Keys</span></a></li>
+<li><a href="interfaces/Schema.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Schema</span></a></li>
+<li><a href="interfaces/SetType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Set<wbr/>Type</span></a></li>
+<li><a href="interfaces/StringType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>String<wbr/>Type</span></a></li>
+<li><a href="interfaces/TupleType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Tuple<wbr/>Type</span></a></li>
+<li><a href="interfaces/ZeroArgumentsConstructor.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-256-path"></use><use href="#icon-256-text"></use></svg><span>Zero<wbr/>Arguments<wbr/>Constructor</span></a></li>
+<li><a href="types/KeyType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-type-alias)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4194304-path"></rect><path d="M11.31 16V8.224H8.91V7.24H14.79V8.224H12.39V16H11.31Z" fill="var(--color-text)" id="icon-4194304-text"></path></svg><span>Key<wbr/>Type</span></a></li>
+<li><a href="types/ScalarAttributeType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Scalar<wbr/>Attribute<wbr/>Type</span></a></li>
+<li><a href="types/SchemaType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Schema<wbr/>Type</span></a></li>
+<li><a href="types/TypeTag.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-4194304-path"></use><use href="#icon-4194304-text"></use></svg><span>Type<wbr/>Tag</span></a></li>
+<li><a href="variables/KeyTypes.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-variable)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-32-path"></rect><path d="M11.106 16L8.85 7.24H9.966L11.454 13.192C11.558 13.608 11.646 13.996 11.718 14.356C11.79 14.708 11.842 14.976 11.874 15.16C11.906 14.976 11.954 14.708 12.018 14.356C12.09 13.996 12.178 13.608 12.282 13.192L13.758 7.24H14.85L12.582 16H11.106Z" fill="var(--color-text)" id="icon-32-text"></path></svg><span>Key<wbr/>Types</span></a></li>
+<li><a href="variables/TypeTags.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-32-path"></use><use href="#icon-32-text"></use></svg><span>Type<wbr/>Tags</span></a></li>
+<li><a href="functions/getSchemaName.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg><span>get<wbr/>Schema<wbr/>Name</span></a></li>
+<li><a href="functions/isKey.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>is<wbr/>Key</span></a></li>
+<li><a href="functions/isSchema.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>is<wbr/>Schema</span></a></li>
+<li><a href="functions/isSchemaType.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>is<wbr/>Schema<wbr/>Type</span></a></li>
+<li><a href="functions/keysFromSchema.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>keys<wbr/>From<wbr/>Schema</span></a></li>
+<li><a href="functions/marshallConditionExpression.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>marshall<wbr/>Condition<wbr/>Expression</span></a></li>
+<li><a href="functions/marshallFunctionExpression.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>marshall<wbr/>Function<wbr/>Expression</span></a></li>
+<li><a href="functions/marshallItem.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>marshall<wbr/>Item</span></a></li>
+<li><a href="functions/marshallKey.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>marshall<wbr/>Key</span></a></li>
+<li><a href="functions/marshallMathematicalExpression.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>marshall<wbr/>Mathematical<wbr/>Expression</span></a></li>
+<li><a href="functions/marshallProjectionExpression.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>marshall<wbr/>Projection<wbr/>Expression</span></a></li>
+<li><a href="functions/marshallUpdateExpression.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>marshall<wbr/>Update<wbr/>Expression</span></a></li>
+<li><a href="functions/marshallValue.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>marshall<wbr/>Value</span></a></li>
+<li><a href="functions/toSchemaName.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>to<wbr/>Schema<wbr/>Name</span></a></li>
+<li><a href="functions/unmarshallItem.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>unmarshall<wbr/>Item</span></a></li></ul></nav></div></div></div>
+<div class="overlay"></div></body></html>

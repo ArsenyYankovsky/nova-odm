@@ -1,4 +1,4 @@
-<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@nova-odm/annotations</title><meta name="description" content="Documentation for @nova-odm/annotations"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script async src="assets/search.js" id="search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
+<!DOCTYPE html><html class="default" lang="en"><head><meta charSet="utf-8"/><meta http-equiv="x-ua-compatible" content="IE=edge"/><title>@nova-odm/annotations</title><meta name="description" content="Documentation for @nova-odm/annotations"/><meta name="viewport" content="width=device-width, initial-scale=1"/><link rel="stylesheet" href="assets/style.css"/><link rel="stylesheet" href="assets/highlight.css"/><script defer src="assets/main.js"></script><script async src="assets/search.js" id="tsd-search-script"></script></head><body><script>document.documentElement.dataset.theme = localStorage.getItem("tsd-theme") || "os"</script><header class="tsd-page-toolbar">
 <div class="tsd-toolbar-contents container">
 <div class="table-cell" id="tsd-search" data-base=".">
 <div class="field"><label for="tsd-search-field" class="tsd-widget tsd-toolbar-icon search no-caption"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M15.7824 13.833L12.6666 10.7177C12.5259 10.5771 12.3353 10.499 12.1353 10.499H11.6259C12.4884 9.39596 13.001 8.00859 13.001 6.49937C13.001 2.90909 10.0914 0 6.50048 0C2.90959 0 0 2.90909 0 6.49937C0 10.0896 2.90959 12.9987 6.50048 12.9987C8.00996 12.9987 9.39756 12.4863 10.5008 11.6239V12.1332C10.5008 12.3332 10.5789 12.5238 10.7195 12.6644L13.8354 15.7797C14.1292 16.0734 14.6042 16.0734 14.8948 15.7797L15.7793 14.8954C16.0731 14.6017 16.0731 14.1267 15.7824 13.833ZM6.50048 10.499C4.29094 10.499 2.50018 8.71165 2.50018 6.49937C2.50018 4.29021 4.28781 2.49976 6.50048 2.49976C8.71001 2.49976 10.5008 4.28708 10.5008 6.49937C10.5008 8.70852 8.71314 10.499 6.50048 10.499Z" fill="var(--color-text)"></path></svg></label><input type="text" id="tsd-search-field" aria-label="Search"/></div>
@@ -9,24 +9,16 @@
 <li class="state failure">The search index is not available</li></ul><a href="index.html" class="title">@nova-odm/annotations</a></div>
 <div class="table-cell" id="tsd-widgets"><a href="#" class="tsd-widget tsd-toolbar-icon menu no-caption" data-toggle="menu" aria-label="Menu"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><rect x="1" y="3" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="7" width="14" height="2" fill="var(--color-text)"></rect><rect x="1" y="11" width="14" height="2" fill="var(--color-text)"></rect></svg></a></div></div></header>
 <div class="container container-main">
-<div class="col-8 col-content">
+<div class="col-content">
 <div class="tsd-page-title">
 <h2>@nova-odm/annotations</h2></div>
-<div class="tsd-panel tsd-typography">
-<a href="#nova-odm--amazon-dynamodb-datamapper-annotations" id="nova-odm--amazon-dynamodb-datamapper-annotations" style="color: inherit; text-decoration: none;">
-  <h1>Nova ODM / Amazon DynamoDB DataMapper Annotations</h1>
-</a>
-<p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/github/license/ArsenyYankovsky/nova-odm.svg?style=flat" alt="Apache 2 License"></a></p>
+<div class="tsd-panel tsd-typography"><a id="md:nova-odm--amazon-dynamodb-datamapper-annotations" class="tsd-anchor"></a><h1><a href="#md:nova-odm--amazon-dynamodb-datamapper-annotations">Nova ODM / Amazon DynamoDB DataMapper Annotations</a></h1><p><a href="https://www.apache.org/licenses/LICENSE-2.0"><img src="https://img.shields.io/github/license/ArsenyYankovsky/nova-odm.svg?style=flat" alt="Apache 2 License"></a></p>
 <p>This library provides annotations to allow easy integration of domain classes
 with the <code>DataMapper</code> defined in <code>@nova-odm/mapper</code>. These annotations
 are provided in a separate NPM package because they rely on two experimental
 features of TypeScript (decorators and metadata decoration) and depend on the
 <code>reflect-metadata</code> package.</p>
-
-<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
-  <h2>Getting started</h2>
-</a>
-<p>To use the annotations, you will first need to enable two TypeScript compiler
+<a id="md:getting-started" class="tsd-anchor"></a><h2><a href="#md:getting-started">Getting started</a></h2><p>To use the annotations, you will first need to enable two TypeScript compiler
 settings: <code>experimentalDecorators</code> and <code>emitDecoratorMetadata</code>. The former
 enables the use of annotations in your project, and the latter emits type
 information about declared property classes.</p>
@@ -34,7 +26,7 @@ information about declared property classes.</p>
 records in your DynamoDB tables and attribute annotations to the declared
 properties that map to attributes of those records:</p>
 <pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">attribute</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">autoGeneratedHashKey</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">rangeKey</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">table</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">versionAttribute</span><span class="hl-1">,</span><br/><span class="hl-1">} </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@nova-odm/annotations&#39;</span><span class="hl-1">;</span><br/><span class="hl-0">import</span><span class="hl-1"> </span><span class="hl-2">uuidV4</span><span class="hl-1"> = </span><span class="hl-0">require</span><span class="hl-1">(</span><span class="hl-3">&#39;uuid/v4&#39;</span><span class="hl-1">);</span><br/><br/><span class="hl-1">@</span><span class="hl-4">table</span><span class="hl-1">(</span><span class="hl-3">&#39;my_table&#39;</span><span class="hl-1">)</span><br/><span class="hl-5">class</span><span class="hl-1"> </span><span class="hl-6">MyDomainClass</span><span class="hl-1"> {</span><br/><span class="hl-1">    @</span><span class="hl-4">autoGeneratedHashKey</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">id</span><span class="hl-1">: </span><span class="hl-6">string</span><span class="hl-1">;</span><br/><br/><span class="hl-1">    @</span><span class="hl-4">rangeKey</span><span class="hl-1">({</span><span class="hl-4">defaultProvider</span><span class="hl-2">:</span><span class="hl-1"> () </span><span class="hl-5">=&gt;</span><span class="hl-1"> </span><span class="hl-5">new</span><span class="hl-1"> </span><span class="hl-4">Date</span><span class="hl-1">()})</span><br/><span class="hl-1">    </span><span class="hl-2">createdAt</span><span class="hl-1">: </span><span class="hl-6">Date</span><span class="hl-1">;</span><br/><br/><span class="hl-1">    @</span><span class="hl-4">versionAttribute</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">version</span><span class="hl-1">: </span><span class="hl-6">number</span><span class="hl-1">;</span><br/><br/><span class="hl-1">    @</span><span class="hl-4">attribute</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">toggle</span><span class="hl-1">?: </span><span class="hl-6">boolean</span><span class="hl-1">;</span><br/><br/><span class="hl-1">    @</span><span class="hl-4">attribute</span><span class="hl-1">({</span><span class="hl-2">memberType:</span><span class="hl-1"> </span><span class="hl-3">&#39;String&#39;</span><span class="hl-1">})</span><br/><span class="hl-1">    </span><span class="hl-2">tags</span><span class="hl-1">?: </span><span class="hl-6">Set</span><span class="hl-1">&lt;</span><span class="hl-6">string</span><span class="hl-1">&gt;;</span><br/><span class="hl-1">    </span><br/><span class="hl-1">    </span><span class="hl-7">// This property will not be saved to DynamoDB.</span><br/><span class="hl-1">    </span><span class="hl-2">notPersistedToDynamoDb</span><span class="hl-1">: </span><span class="hl-6">string</span><span class="hl-1">;</span><br/><span class="hl-1">}</span>
-</code></pre>
+</code><button>Copy</button></pre>
 <p>Using these annotations will automatically define properties at the
 <code>DynamoDbSchema</code> and <code>DynamoDbTable</code> symbols on the class prototype, meaning
 that you can pass instances of the class directly to a <code>DataMapper</code> instance. No
@@ -43,54 +35,26 @@ the schema.</p>
 <p>To declare a class corresponding to a map attribute value in a DynamoDB record,
 simply omit the <code>table</code> annotation:</p>
 <pre><code class="language-typescript"><span class="hl-0">import</span><span class="hl-1"> {</span><br/><span class="hl-1">    </span><span class="hl-2">attribute</span><span class="hl-1">, </span><br/><span class="hl-1">    </span><span class="hl-2">hashKey</span><span class="hl-1">,</span><br/><span class="hl-1">    </span><span class="hl-2">table</span><span class="hl-1">,</span><br/><span class="hl-1">} </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@nova-odm/annotations&#39;</span><span class="hl-1">;</span><br/><span class="hl-0">import</span><span class="hl-1"> {</span><span class="hl-2">embed</span><span class="hl-1">} </span><span class="hl-0">from</span><span class="hl-1"> </span><span class="hl-3">&#39;@nova-odm/mapper&#39;</span><span class="hl-1">;</span><br/><br/><span class="hl-5">class</span><span class="hl-1"> </span><span class="hl-6">Comment</span><span class="hl-1"> {</span><br/><span class="hl-1">    @</span><span class="hl-4">attribute</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">author</span><span class="hl-1">?: </span><span class="hl-6">string</span><span class="hl-1">;</span><br/><br/><span class="hl-1">    @</span><span class="hl-4">attribute</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">postedAt</span><span class="hl-1">?: </span><span class="hl-6">Date</span><span class="hl-1">;</span><br/><br/><span class="hl-1">    @</span><span class="hl-4">attribute</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">text</span><span class="hl-1">?: </span><span class="hl-6">string</span><span class="hl-1">;</span><br/><span class="hl-1">}</span><br/><br/><span class="hl-1">@</span><span class="hl-4">table</span><span class="hl-1">(</span><span class="hl-3">&#39;posts&#39;</span><span class="hl-1">)</span><br/><span class="hl-5">class</span><span class="hl-1"> </span><span class="hl-6">BlogPost</span><span class="hl-1"> {</span><br/><span class="hl-1">    @</span><span class="hl-4">hashKey</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">id</span><span class="hl-1">: </span><span class="hl-6">string</span><span class="hl-1">;</span><br/><br/><span class="hl-1">    @</span><span class="hl-4">attribute</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">author</span><span class="hl-1">?: </span><span class="hl-6">string</span><span class="hl-1">;</span><br/><br/><span class="hl-1">    @</span><span class="hl-4">attribute</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">postedAt</span><span class="hl-1">?: </span><span class="hl-6">Date</span><span class="hl-1">;</span><br/><br/><span class="hl-1">    @</span><span class="hl-4">attribute</span><span class="hl-1">()</span><br/><span class="hl-1">    </span><span class="hl-2">text</span><span class="hl-1">?: </span><span class="hl-6">string</span><span class="hl-1">;</span><br/><span class="hl-1">    </span><br/><span class="hl-1">    @</span><span class="hl-4">attribute</span><span class="hl-1">({</span><span class="hl-2">memberType:</span><span class="hl-1"> </span><span class="hl-4">embed</span><span class="hl-1">(</span><span class="hl-2">Comment</span><span class="hl-1">)})</span><br/><span class="hl-1">    </span><span class="hl-2">replies</span><span class="hl-1">?: </span><span class="hl-6">Array</span><span class="hl-1">&lt;</span><span class="hl-6">Comment</span><span class="hl-1">&gt;</span><br/><span class="hl-1">}</span>
-</code></pre>
-
-<a href="#supported-annotations" id="supported-annotations" style="color: inherit; text-decoration: none;">
-  <h2>Supported Annotations</h2>
-</a>
-
-<a href="#attribute" id="attribute" style="color: inherit; text-decoration: none;">
-  <h3><code>attribute</code></h3>
-</a>
-<p>Marks a property as an attribute in the mapped DynamoDB record. The annotation
+</code><button>Copy</button></pre>
+<a id="md:supported-annotations" class="tsd-anchor"></a><h2><a href="#md:supported-annotations">Supported Annotations</a></h2><a id="md:attribute" class="tsd-anchor"></a><h3><a href="#md:attribute"><code>attribute</code></a></h3><p>Marks a property as an attribute in the mapped DynamoDB record. The annotation
 will attempt to infer the correct DynamoDB type from the TypeScript type
 metadata, though no metadata will be available for any generic type parameters
 used.</p>
 <p><code>attribute</code> must be called as a function and accepts an optional argument
 containing a partial or complete field schema definition.</p>
-
-<a href="#autogeneratedhashkey" id="autogeneratedhashkey" style="color: inherit; text-decoration: none;">
-  <h3><code>autoGeneratedHashKey</code></h3>
-</a>
-<p>Designates the property as representing the record&#39;s hash key. If no key is
+<a id="md:autogeneratedhashkey" class="tsd-anchor"></a><h3><a href="#md:autogeneratedhashkey"><code>autoGeneratedHashKey</code></a></h3><p>Designates the property as representing the record&#39;s hash key. If no key is
 defined, a V4 UUID will be used.</p>
 <p><code>autoGeneratedHashKey</code> must be called as a function and accepts an optional
 argument containing a partial or complete field schema definition.</p>
-
-<a href="#hashkey" id="hashkey" style="color: inherit; text-decoration: none;">
-  <h3><code>hashKey</code></h3>
-</a>
-<p>Designates the property as representing the record&#39;s hash (partition) key.</p>
+<a id="md:hashkey" class="tsd-anchor"></a><h3><a href="#md:hashkey"><code>hashKey</code></a></h3><p>Designates the property as representing the record&#39;s hash (partition) key.</p>
 <p><code>hashKey</code> must be called as a function and accepts an optional argument
 containing a partial or complete field schema definition.</p>
-
-<a href="#rangekey" id="rangekey" style="color: inherit; text-decoration: none;">
-  <h3><code>rangeKey</code></h3>
-</a>
-<p>Designates the property as representing the record&#39;s range (sort) key.</p>
+<a id="md:rangekey" class="tsd-anchor"></a><h3><a href="#md:rangekey"><code>rangeKey</code></a></h3><p>Designates the property as representing the record&#39;s range (sort) key.</p>
 <p><code>rangeKey</code> must be called as a function and accepts an optional argument
 containing a partial or complete field schema definition.</p>
-
-<a href="#table" id="table" style="color: inherit; text-decoration: none;">
-  <h3><code>table</code></h3>
-</a>
-<p>Designates a class as representing a table in DynamoDB.</p>
+<a id="md:table" class="tsd-anchor"></a><h3><a href="#md:table"><code>table</code></a></h3><p>Designates a class as representing a table in DynamoDB.</p>
 <p><code>table</code> must be called as a function with that table name as the only argument.</p>
-
-<a href="#versionattribute" id="versionattribute" style="color: inherit; text-decoration: none;">
-  <h3><code>versionAttribute</code></h3>
-</a>
-<p>Designates the property as representing the record&#39;s version attribute. The data
+<a id="md:versionattribute" class="tsd-anchor"></a><h3><a href="#md:versionattribute"><code>versionAttribute</code></a></h3><p>Designates the property as representing the record&#39;s version attribute. The data
 mapper will use optimistic locking by incrementing the version attribute during
 <code>put</code> and <code>update</code> operations and sending a condition expression with all <code>put</code>,
 <code>update</code>, and <code>delete</code> operations that will cause the operation to fail if the
@@ -98,24 +62,12 @@ record in the database has a version number that does not match the one held by
 the client.</p>
 <p><code>versionAttribute</code> must be called as a function and accepts an optional argument
 containing a partial or complete field schema definition.</p>
-
-<a href="#caveats" id="caveats" style="color: inherit; text-decoration: none;">
-  <h2>Caveats</h2>
-</a>
-
-<a href="#reliance-on-experimental-typescript-features" id="reliance-on-experimental-typescript-features" style="color: inherit; text-decoration: none;">
-  <h3>Reliance on experimental TypeScript features</h3>
-</a>
-<p>Because this package relies on experimental TypeScript features, it is subject
+<a id="md:caveats" class="tsd-anchor"></a><h2><a href="#md:caveats">Caveats</a></h2><a id="md:reliance-on-experimental-typescript-features" class="tsd-anchor"></a><h3><a href="#md:reliance-on-experimental-typescript-features">Reliance on experimental TypeScript features</a></h3><p>Because this package relies on experimental TypeScript features, it is subject
 to change and should be considered beta software. Decorators are currently on
 the ECMAScript standards track, but the accepted form may differ from that
 implemented by TypeScript, which could cause the public interface presented by
 this project to change.</p>
-
-<a href="#lack-of-type-information-in-generics" id="lack-of-type-information-in-generics" style="color: inherit; text-decoration: none;">
-  <h3>Lack of type information in generics</h3>
-</a>
-<p>Please note that TypeScript does not emit any metadata about the type parameters
+<a id="md:lack-of-type-information-in-generics" class="tsd-anchor"></a><h3><a href="#md:lack-of-type-information-in-generics">Lack of type information in generics</a></h3><p>Please note that TypeScript does not emit any metadata about the type parameters
 supplied to generic types, so <code>Array&lt;string&gt;</code>, <code>[number, string]</code>, and 
 <code>MyClass[]</code> are all exposed as <code>Array</code> via the emitted metadata. Without
 additional metadata, this annotation will treat all encountered arrays as
@@ -127,10 +79,11 @@ will be automatically inferred if a property is declared as being of type
 <code>BinarySet</code> or <code>NumberValueSet</code> (from the <code>@nova-odm/auto-marshaller</code>
 package).</p>
 </div></div>
-<div class="col-4 col-menu menu-sticky-wrap menu-highlight">
+<div class="col-sidebar">
+<div class="page-menu">
 <div class="tsd-navigation settings">
 <details class="tsd-index-accordion"><summary class="tsd-accordion-summary">
-<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Settings</h3></summary>
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg>Settings</h3></summary>
 <div class="tsd-accordion-details">
 <div class="tsd-filter-visibility">
 <h4 class="uppercase">Member Visibility</h4><form>
@@ -139,20 +92,38 @@ package).</p>
 <li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-inherited" name="inherited" checked/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>Inherited</span></label></li>
 <li class="tsd-filter-item"><label class="tsd-filter-input"><input type="checkbox" id="tsd-filter-external" name="external"/><svg width="32" height="32" viewBox="0 0 32 32" aria-hidden="true"><rect class="tsd-checkbox-background" width="30" height="30" x="1" y="1" rx="6" fill="none"></rect><path class="tsd-checkbox-checkmark" d="M8.35422 16.8214L13.2143 21.75L24.6458 10.25" stroke="none" stroke-width="3.5" stroke-linejoin="round" fill="none"></path></svg><span>External</span></label></li></ul></form></div>
 <div class="tsd-theme-toggle">
-<h4 class="uppercase">Theme</h4><select id="theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
-<nav class="tsd-navigation primary">
-<details class="tsd-index-accordion" open><summary class="tsd-accordion-summary">
-<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg> Modules</h3></summary>
+<h4 class="uppercase">Theme</h4><select id="tsd-theme"><option value="os">OS</option><option value="light">Light</option><option value="dark">Dark</option></select></div></div></details></div>
+<details open class="tsd-index-accordion tsd-page-navigation"><summary class="tsd-accordion-summary">
+<h3><svg width="20" height="20" viewBox="0 0 24 24" fill="none"><path d="M4.93896 8.531L12 15.591L19.061 8.531L16.939 6.409L12 11.349L7.06098 6.409L4.93896 8.531Z" fill="var(--color-text)"></path></svg>On This Page</h3></summary>
 <div class="tsd-accordion-details">
 <ul>
-<li class="current selected"><a href="modules.html">@nova-<wbr/>odm/annotations</a>
-<ul></ul></li></ul></div></details></nav>
-<nav class="tsd-navigation secondary menu-sticky">
+<li>
 <ul>
-<li class="tsd-kind-function"><a href="functions/attribute.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg>attribute</a></li>
-<li class="tsd-kind-function"><a href="functions/autoGeneratedHashKey.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>auto<wbr/>Generated<wbr/>Hash<wbr/>Key</a></li>
-<li class="tsd-kind-function"><a href="functions/hashKey.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>hash<wbr/>Key</a></li>
-<li class="tsd-kind-function"><a href="functions/rangeKey.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>range<wbr/>Key</a></li>
-<li class="tsd-kind-function"><a href="functions/table.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>table</a></li>
-<li class="tsd-kind-function"><a href="functions/versionAttribute.html" class="tsd-index-link"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg>version<wbr/>Attribute</a></li></ul></nav></div></div>
-<div class="overlay"></div><script src="assets/main.js"></script></body></html>
+<li><a href="#md:nova-odm--amazon-dynamodb-datamapper-annotations"><span>Nova ODM / <wbr/>Amazon <wbr/>DynamoDB <wbr/>Data<wbr/>Mapper <wbr/>Annotations</span></a></li>
+<li>
+<ul>
+<li><a href="#md:getting-started"><span>Getting started</span></a></li>
+<li><a href="#md:supported-annotations"><span>Supported <wbr/>Annotations</span></a></li>
+<li>
+<ul>
+<li><a href="#md:attribute"><span>attribute</span></a></li>
+<li><a href="#md:autogeneratedhashkey"><span>auto<wbr/>Generated<wbr/>Hash<wbr/>Key</span></a></li>
+<li><a href="#md:hashkey"><span>hash<wbr/>Key</span></a></li>
+<li><a href="#md:rangekey"><span>range<wbr/>Key</span></a></li>
+<li><a href="#md:table"><span>table</span></a></li>
+<li><a href="#md:versionattribute"><span>version<wbr/>Attribute</span></a></li></ul></li>
+<li><a href="#md:caveats"><span>Caveats</span></a></li>
+<li>
+<ul>
+<li><a href="#md:reliance-on-experimental-typescript-features"><span>Reliance on experimental <wbr/>Type<wbr/>Script features</span></a></li>
+<li><a href="#md:lack-of-type-information-in-generics"><span>Lack of type information in generics</span></a></li></ul></li></ul></li></ul></li></ul></div></details></div>
+<div class="site-menu">
+<nav class="tsd-navigation"><a href="modules.html" class="current"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-namespace)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-4-path"></rect><path d="M9.33 16V7.24H10.77L13.446 14.74C13.43 14.54 13.41 14.296 13.386 14.008C13.37 13.712 13.354 13.404 13.338 13.084C13.33 12.756 13.326 12.448 13.326 12.16V7.24H14.37V16H12.93L10.266 8.5C10.282 8.692 10.298 8.936 10.314 9.232C10.33 9.52 10.342 9.828 10.35 10.156C10.366 10.476 10.374 10.784 10.374 11.08V16H9.33Z" fill="var(--color-text)" id="icon-4-text"></path></svg><span>@nova-<wbr/>odm/annotations</span></a>
+<ul class="tsd-small-nested-navigation">
+<li><a href="functions/attribute.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><rect fill="var(--color-icon-background)" stroke="var(--color-ts-function)" stroke-width="1.5" x="1" y="1" width="22" height="22" rx="6" id="icon-64-path"></rect><path d="M9.39 16V7.24H14.55V8.224H10.446V11.128H14.238V12.112H10.47V16H9.39Z" fill="var(--color-text)" id="icon-64-text"></path></svg><span>attribute</span></a></li>
+<li><a href="functions/autoGeneratedHashKey.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>auto<wbr/>Generated<wbr/>Hash<wbr/>Key</span></a></li>
+<li><a href="functions/hashKey.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>hash<wbr/>Key</span></a></li>
+<li><a href="functions/rangeKey.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>range<wbr/>Key</span></a></li>
+<li><a href="functions/table.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>table</span></a></li>
+<li><a href="functions/versionAttribute.html"><svg class="tsd-kind-icon" width="24" height="24" viewBox="0 0 24 24"><use href="#icon-64-path"></use><use href="#icon-64-text"></use></svg><span>version<wbr/>Attribute</span></a></li></ul></nav></div></div></div>
+<div class="overlay"></div></body></html>

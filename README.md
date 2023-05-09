@@ -1,9 +1,9 @@
 # Nova ODM / Amazon DynamoDB DataMapper For JavaScript
 
-![GitHub](https://img.shields.io/github/license/ArsenyYankovsky/nova-odm)
-![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/ArsenyYankovsky/nova-odm/run-checks.yml?branch=master)
-![npm](https://img.shields.io/npm/dw/@nova-odm/mapper)
-![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@nova-odm/mapper)
+[![GitHub](https://img.shields.io/github/license/ArsenyYankovsky/nova-odm)](https://github.com/ArsenyYankovsky/nova-odm/blob/master/LICENSE)
+[![GitHub Workflow Status (with branch)](https://img.shields.io/github/actions/workflow/status/ArsenyYankovsky/nova-odm/run-checks.yml?branch=master)](https://github.com/ArsenyYankovsky/nova-odm/actions)
+[![npm](https://img.shields.io/npm/dw/@nova-odm/mapper)](https://www.npmjs.com/package/@nova-odm/mapper)
+[![npm bundle size (scoped)](https://img.shields.io/bundlephobia/minzip/@nova-odm/mapper)](https://www.npmjs.com/package/@nova-odm/mapper)
 
 A schema-based object to document mapper for Amazon DynamoDB.
 
