@@ -21,8 +21,8 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '16'
-      - name: lerna boostrap
-        run: npm run bootstrap
+      - name: install deps
+        run: npm install
       - name: run unit tests
         run: npm run test
       - name: run int tests
