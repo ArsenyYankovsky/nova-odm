@@ -11,7 +11,7 @@ jobs:
     runs-on: ubuntu-latest
     services:
       dynamodb-local:
-        image: amazon/dynamodb-local:latest
+        image: amazon/dynamodb-local:1.24.0
         ports:
           - 8000:8000
 
@@ -20,7 +20,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: '16'
+          node-version: '20'
       - name: install deps
         run: npm install
       - name: run unit tests
