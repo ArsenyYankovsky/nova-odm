@@ -1,5 +1,5 @@
+import {marshall} from "@aws-sdk/util-dynamodb";
 import {NumberValue} from "./NumberValue";
-
 describe('NumberValue', function() {
     it('should store numbers', function() {
         const number = new NumberValue(123);
@@ -51,6 +51,15 @@ describe('NumberValue', function() {
                 .toBe('[object DynamoDbNumberValue]');
         }
     );
+
+    it('should be compatible with @aws-sdk/util-dynamodb', () => {
+        const unmarshalledRecord = {
+            id: "123",
+            amount: new NumberValue("4000"),
+        };
+
+        marshall(unmarshalledRecord);
+    })
 
     describe('::isNumberValue', () => {
         it('should return `true` for NumberValue objects', () => {

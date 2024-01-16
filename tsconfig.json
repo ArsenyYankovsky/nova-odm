@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2020",
     "lib": [
       "dom",
-      "es5",
+      "es2020",
       "esnext.asynciterable",
       "esnext"
     ],
