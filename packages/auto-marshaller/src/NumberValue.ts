@@ -1,3 +1,5 @@
+import {NumberValueImpl} from '@aws-sdk/util-dynamodb';
+
 const NUMBER_VALUE_TAG = 'DynamoDbNumberValue';
 const EXPECTED_TAG = `[object ${NUMBER_VALUE_TAG}]`;
 
@@ -7,11 +9,13 @@ const EXPECTED_TAG = `[object ${NUMBER_VALUE_TAG}]`;
  * as strings (the format used by DynamoDB's JSON-based data representation
  * schema).
  */
-export class NumberValue {
+export class NumberValue extends NumberValueImpl {
     public readonly value: string;
     public readonly [Symbol.toStringTag] = NUMBER_VALUE_TAG;
 
+    // @ts-ignore
     constructor(value: string|number) {
+        // @ts-ignore
         this.value = value.toString().trim();
     }
 
@@ -35,6 +39,7 @@ export class NumberValue {
      * Convert the value to its desired literal representation. Called
      * automatically when objects appear in arithmetic expressions.
      */
+    // @ts-ignore
     valueOf(): number {
         return Number(this.value);
     }
