@@ -3,13 +3,23 @@ import {NumberValueImpl} from '@aws-sdk/util-dynamodb';
 const NUMBER_VALUE_TAG = 'DynamoDbNumberValue';
 const EXPECTED_TAG = `[object ${NUMBER_VALUE_TAG}]`;
 
+
+/**
+ * Establishes compatibility between the nova-odm `NumberValue` class and the @aws-sdk/util-dynamodb `NumberValueImpl` class.
+ * See details here: https://github.com/ArsenyYankovsky/nova-odm/issues/12
+ */
+class NumberValueOverride extends NumberValueImpl {
+    valueOf(): any {
+        return Number(this.value);
+    }
+}
 /**
  * A number that may contain greater precision than can safely be stored in
  * JavaScript's `number` data type. Numerical values are represented internally
  * as strings (the format used by DynamoDB's JSON-based data representation
  * schema).
  */
-export class NumberValue extends NumberValueImpl {
+export class NumberValue extends NumberValueOverride {
     public readonly value: string;
     public readonly [Symbol.toStringTag] = NUMBER_VALUE_TAG;
 
@@ -39,7 +49,6 @@ export class NumberValue extends NumberValueImpl {
      * Convert the value to its desired literal representation. Called
      * automatically when objects appear in arithmetic expressions.
      */
-    // @ts-ignore
     valueOf(): number {
         return Number(this.value);
     }
